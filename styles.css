@@ -167,3 +167,67 @@ body{
         transform: scale(1); /* Retorna ao tamanho original */
     }
 }
+
+/* Contêiner de vídeos para alinhar os botões em grade */
+.video-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas para 4 vídeos */
+    gap: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* Estilo para cada botão de vídeo */
+.video-button {
+    padding: 10px;
+    border: 2px solid #FF914D;
+    border-radius: 15px;
+    background-color: #FFF3E0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Estilo para a imagem dentro de cada botão de vídeo */
+.video-button img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para o botão de cada vídeo */
+.styled-button {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #FF914D;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.styled-button:hover {
+    background-color: #FF7A2E;
+}
+
+/* Estilo para o botão de voltar */
+.button {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 16px;
+    padding: 8px 15px;
+    color: #FFFFFF;
+    background-color: #4DA6FF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #3399FF;
+}
