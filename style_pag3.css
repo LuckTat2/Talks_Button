@@ -1,9 +1,13 @@
-body{
-
+body {
     background-image: url("img/fundo.jpg"); /* Caminho para a imagem de fundo */
     background-size: cover; /* Ajusta a imagem para cobrir toda a área */
     background-repeat: no-repeat; /* Impede que a imagem se repita */
     background-position: center; /* Centraliza a imagem */
+    height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    margin: 0; /* Remove margens padrão */
+    display: flex; /* Usando Flexbox no body */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
 }
 
 .container {
@@ -12,7 +16,6 @@ body{
     gap: 10px; /* Espaço entre os itens */
     max-width: 1000px; /* Largura máxima do contêiner */
     margin: auto; /* Centraliza o contêiner */
-    
 }
 
 .container1 {
@@ -39,7 +42,6 @@ body{
     margin-top: 20px; /* Espaçamento acima da imagem */
 }
 
-
 .container2 {
     width: 300px; /* Largura fixa do container */
     height: 100px; /* Altura fixa do container */
@@ -63,7 +65,6 @@ body{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
     margin-top: 20px; /* Espaçamento acima da imagem */
 }
-
 
 .container3 {
     width: 300px; /* Largura fixa do container */
@@ -89,7 +90,6 @@ body{
     margin-top: 20px; /* Espaçamento acima da imagem */
 }
 
-
 .container4 {
     width: 300px; /* Largura fixa do container */
     height: 100px; /* Altura fixa do container */
@@ -114,28 +114,26 @@ body{
     margin-top: 20px; /* Espaçamento acima da imagem */
 }
 
-
 .container0 {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10; 
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 10px; 
+    top: 50%; /* Posição vertical no meio */
+    left: 50%; /* Posição horizontal no meio */
+    transform: translate(-50%, -50%); /* Centraliza completamente */
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo semitransparente */
+    padding: 10px;
     border-radius: 150px;
-    overflow: hidden; 
-    width: 300px; /* Largura fixa */
-    max-width: 80%; /* Largura máxima */
-    max-height: 400px; /* Limite de altura */
+    overflow: hidden;
+    width: 200px; /* Largura menor do container */
+    max-width: 80%; /* Limita a largura máxima */
+    max-height: 300px; /* Limita a altura máxima */
     overflow-y: auto; /* Rolagem vertical */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra */
 }
 
-
 .container0 img {
-    width: 100%;
-    object-fit: cover; /* Garante que a imagem preencha o contêiner sem distorção */
+    width: 100%; /* Ajusta a imagem para preencher o container */
+    object-fit: cover; /* Garante que a imagem se ajuste ao container sem distorção */
     border-radius: 150px; /* Mantém o arredondamento da imagem */
 }
 
