@@ -3,12 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página 3</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Página com Botões</title>
+    <link rel="stylesheet" href="style_pag3.css">
+    <script>
+        // Função para tocar som ao clicar no container
+        function tocarSom(id) {
+            const som = document.getElementById(id);
+            som.play();
+        }
+    </script>
 </head>
 <body>
-    <h1>Bem-vindo à Página 3</h1>
-    <p>Este é o conteúdo da página 3.</p>
-    <a href="index.html" class="button">Voltar para a página inicial</a>
+    <div class="container">
+        <!-- Cada container com onclick para tocar o som correspondente -->
+        <div class="container1" onclick="tocarSom('som1')">
+            <img src="img/b1.jpg" width="100" alt="Imagem 1">
+        </div>
+        <div class="container2" onclick="tocarSom('som2')">
+            <img src="img/b2.jpg" width="100" alt="Imagem 2">
+        </div>
+        <div class="container3" onclick="tocarSom('som3')">
+            <img src="img/b3.jpg" width="100" alt="Imagem 3">
+        </div>
+        <div class="container4" onclick="tocarSom('som4')">
+            <img src="img/b4.jpg" width="100" alt="Imagem 4">
+        </div>
+    </div>
+
+    <div class="container0">
+        <img src="img/gatinhogif.gif" alt="Descrição da imagem">
+    </div>
+
+    <!-- Áudios -->
+    <audio id="som1" src="audio/som1.mp3"></audio>
+    <audio id="som2" src="audio/som2.mp3"></audio>
+    <audio id="som3" src="audio/som3.mp3"></audio>
+    <audio id="som4" src="audio/som4.mp3"></audio>
+
 </body>
 </html>
