@@ -1,167 +1,120 @@
+/* Estilo do body e fundo */
 body {
-    background-image: url("img/fundo.jpg"); /* Caminho para a imagem de fundo */
-    background-size: cover; /* Ajusta a imagem para cobrir toda a área */
-    background-repeat: no-repeat; /* Impede que a imagem se repita */
-    background-position: center; /* Centraliza a imagem */
-    height: 100vh; /* Garante que o body ocupe toda a altura da tela */
-    margin: 0; /* Remove margens padrão */
-    display: flex; /* Usando Flexbox no body */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
+    position: relative;
+    background-image: url("img/fundo_musicas.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Camada semitransparente */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5); /* Branco com mais opacidade */
+    z-index: -1; /* Garante que a camada de fundo fique atrás do conteúdo */
+}
+
+/* Ajuste no espaçamento dos containers */
 .container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colunas com larguras iguais */
-    gap: 10px; /* Espaço entre os itens */
-    max-width: 1000px; /* Largura máxima do contêiner */
-    margin: auto; /* Centraliza o contêiner */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px; /* Aumentado o espaçamento entre os containers */
+    max-width: 1200px; /* Largura máxima do contêiner */
+    margin-top: 100px; /* Distancia mais os containers do topo da tela */
+    margin-bottom: 100px; /* Distancia mais os containers do fundo */
 }
 
-.container1 {
-    width: 300px; /* Largura fixa do container */
-    height: 100px; /* Altura fixa do container */
-    text-align: center;
-    padding: 80px;
-    border: 3px solid #4f740c;
-    background-color: #1dc518;
+/* Estilo dos containers */
+.container1, .container2, .container3, .container4 {
+    width: 350px; /* Aumentada a largura dos containers */
+    height: 200px; /* Aumentada a altura dos containers */
+    padding: 40px; /* Ajuste do padding para aumentar o espaço interno */
     border-radius: 15%;
-    display: flex; /* Usando Flexbox */
-    flex-direction: column; /* Alinha itens na coluna */
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* Impede qualquer conteúdo extra fora do container */
 }
 
-.container1 img {
-    width: 60%; /* Ajusta a largura da imagem para ocupar 100% do container */
-    max-width: 500px; /* Largura máxima da imagem */
-    height: auto; /* Mantém a proporção da imagem */
-    border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
-    border-radius: 10%; /* Bordas arredondadas */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
-    margin-top: 20px; /* Espaçamento acima da imagem */
+.container1 { border: 3px solid #4f740c; background-color: #1dc518; }
+.container2 { border: 3px solid hsl(0, 95%, 32%); background-color: hsl(0, 100%, 49%); }
+.container3 { border: 3px solid #a19706; background-color: #f3ef0d; }
+.container4 { border: 3px solid #0d053a; background-color: #0f27b4; }
+
+/* Imagens dos ícones de música - sem borda e sem sombra */
+.container1 img, .container2 img, .container3 img, .container4 img {
+    width: 65%; /* Diminuiu a largura das imagens dentro dos containers para 60% */
+    height: auto;
+    border: none; /* Removida a borda */
+    box-shadow: none; /* Removida a sombra */
+    border-radius: 10%;
 }
 
-.container2 {
-    width: 300px; /* Largura fixa do container */
-    height: 100px; /* Altura fixa do container */
-    text-align: center;
-    padding: 80px;
-    border: 3px solid hsl(0, 95%, 32%);
-    background-color: hsl(0, 100%, 49%);
-    border-radius: 15%;
-    display: flex; /* Usando Flexbox */
-    flex-direction: column; /* Alinha itens na coluna */
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
+/* Ícones de edição (alterar.png) */
+.editar-icone {
+    position: absolute;
+    top: -140px;  /* Jogando mais para cima (aumentei o valor negativo) */
+    left: -80px; /* Movendo bastante para a esquerda */
+    width: 20px; /* Tamanho do ícone para 20px */
+    height: 20px; /* Manter proporção com o width */
+    border: none;
+    background: none;
+    cursor: pointer;
+    visibility: hidden; /* Ícone invisível por padrão */
 }
 
-.container2 img {
-    width: 60%; /* Ajusta a largura da imagem para ocupar 100% do container */
-    max-width: 500px; /* Largura máxima da imagem */
-    height: auto; /* Mantém a proporção da imagem */
-    border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
-    border-radius: 10%; /* Bordas arredondadas */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
-    margin-top: 20px; /* Espaçamento acima da imagem */
+/* Mostrar os ícones de edição apenas no modo de edição */
+.modo-edicao .editar-icone {
+    visibility: visible; /* Tornar o ícone visível quando no modo de edição */
 }
 
-.container3 {
-    width: 300px; /* Largura fixa do container */
-    height: 100px; /* Altura fixa do container */
-    text-align: center;
-    padding: 80px;
-    border: 3px solid #a19706;
-    background-color: #f3ef0d;
-    border-radius: 15%;
-    display: flex; /* Usando Flexbox */
-    flex-direction: column; /* Alinha itens na coluna */
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
+/* Configurações do botão de modo de edição */
+.config-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
 }
 
-.container3 img {
-    width: 60%; /* Ajusta a largura da imagem para ocupar 100% do container */
-    max-width: 500px; /* Largura máxima da imagem */
-    height: auto; /* Mantém a proporção da imagem */
-    border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
-    border-radius: 10%; /* Bordas arredondadas */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
-    margin-top: 20px; /* Espaçamento acima da imagem */
+.config-button img {
+    width: 70px; /* Aumentado o tamanho do ícone de configurações */
+    height: 70px;
 }
 
-.container4 {
-    width: 300px; /* Largura fixa do container */
-    height: 100px; /* Altura fixa do container */
-    text-align: center;
-    padding: 80px;
-    border: 3px solid #0d053a;
-    background-color: #0f27b4;
-    border-radius: 15%;
-    display: flex; /* Usando Flexbox */
-    flex-direction: column; /* Alinha itens na coluna */
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-}
-
-.container4 img {
-    width: 60%; /* Ajusta a largura da imagem para ocupar 100% do container */
-    max-width: 500px; /* Largura máxima da imagem */
-    height: auto; /* Mantém a proporção da imagem */
-    border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
-    border-radius: 10%; /* Bordas arredondadas */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
-    margin-top: 20px; /* Espaçamento acima da imagem */
-}
-
+/* Container central (Ícone de Gato) */
 .container0 {
     position: absolute;
-    top: 50%; /* Posição vertical no meio */
-    left: 50%; /* Posição horizontal no meio */
-    transform: translate(-50%, -50%); /* Centraliza completamente */
+    top: 50%; /* Mantém o ícone de gato no centro vertical */
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 10;
-    background-color: rgba(255, 255, 255, 0.8); /* Fundo semitransparente */
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
     border-radius: 150px;
-    overflow: hidden;
-    width: 200px; /* Largura menor do container */
-    max-width: 80%; /* Limita a largura máxima */
-    max-height: 300px; /* Limita a altura máxima */
-    overflow-y: auto; /* Rolagem vertical */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+    width: 250px; /* Mantém a largura do container central */
+    max-width: 80%;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Distância extra entre o ícone de gato e os containers */
 .container0 img {
-    width: 100%; /* Ajusta a imagem para preencher o container */
-    object-fit: cover; /* Garante que a imagem se ajuste ao container sem distorção */
-    border-radius: 150px; /* Mantém o arredondamento da imagem */
-}
-
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 5px;
-    text-decoration: none;
-    color: white;
-    background-color: #4CAF50;
-    border-radius: 5px;
-}
-
-.highlight {
-    animation: highlight-animation 0.5s forwards; /* Duração e execução da animação */
-}
-
-@keyframes highlight-animation {
-    0% {
-        background-color: rgba(255, 255, 0, 0.5); /* Cor de fundo inicial (amarelo claro) */
-        transform: scale(1); /* Tamanho inicial */
-    }
-    50% {
-        background-color: rgba(255, 255, 0, 0.8); /* Cor de fundo intermediária */
-        transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
-    }
-    100% {
-        background-color: #1dc518; /* Cor de fundo original */
-        transform: scale(1); /* Retorna ao tamanho original */
-    }
+    width: 100%;
+    object-fit: cover;
+    border-radius: 150px;
 }

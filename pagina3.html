@@ -5,46 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página com Botões</title>
     <link rel="stylesheet" href="style_pag3.css">
-    <script>
-        // Variável para armazenar o som atual
-        let somAtual = null;
-
-        // Função para tocar ou pausar som ao clicar no container
-        function tocarSom(id) {
-            const som = document.getElementById(id);
-
-            // Se o mesmo som estiver tocando, pausa
-            if (somAtual === som && !som.paused) {
-                som.pause();
-                som.currentTime = 0; // Reinicia o som para o início
-                somAtual = null; // Reseta a variável somAtual
-            } else {
-                // Se houver outro som tocando, pausa e reinicia
-                if (somAtual && !somAtual.paused) {
-                    somAtual.pause();
-                    somAtual.currentTime = 0;
-                }
-                // Toca o novo som e define como som atual
-                som.play();
-                somAtual = som;
-            }
-        }
-    </script>
+    <script src="script_pag3.js"></script>
 </head>
 <body>
     <div class="container">
-        <!-- Cada container com onclick para tocar ou pausar o som correspondente -->
         <div class="container1" onclick="tocarSom('som1')">
-            <img src="img/ios-music.png" width="100" alt="Imagem 1">
+            <img src="img/ios-music.png" class="icon-imagem" alt="Imagem 1">
+            <img src="img/alterar.png" class="editar-icone" alt="Editar 1">
         </div>
         <div class="container2" onclick="tocarSom('som2')">
-            <img src="img/ios-music.png" width="100" alt="Imagem 2">
+            <img src="img/ios-music.png" class="icon-imagem" alt="Imagem 2">
+            <img src="img/alterar.png" class="editar-icone" alt="Editar 2">
         </div>
         <div class="container3" onclick="tocarSom('som3')">
-            <img src="img/ios-music.png" width="100" alt="Imagem 3">
+            <img src="img/ios-music.png" class="icon-imagem" alt="Imagem 3">
+            <img src="img/alterar.png" class="editar-icone" alt="Editar 3">
         </div>
         <div class="container4" onclick="tocarSom('som4')">
-            <img src="img/ios-music.png" width="100" alt="Imagem 4">
+            <img src="img/ios-music.png" class="icon-imagem" alt="Imagem 4">
+            <img src="img/alterar.png" class="editar-icone" alt="Editar 4">
         </div>
     </div>
 
@@ -52,10 +31,18 @@
         <img src="img/gatinhogif.gif" alt="Descrição da imagem">
     </div>
 
+    <!-- Botão de Configurações -->
+    <button class="config-button" onclick="toggleModoEdicao()">
+        <img src="img/config.png" alt="Configurações">
+    </button>
+
     <!-- Áudios -->
     <audio id="som1" src="audio/som1.mp3"></audio>
     <audio id="som2" src="audio/som2.mp3"></audio>
     <audio id="som3" src="audio/som3.mp3"></audio>
     <audio id="som4" src="audio/som4.mp3"></audio>
+
+    <!-- Inclusão do script externo -->
+    <script src="script.js"></script>
 </body>
 </html>
