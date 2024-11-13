@@ -1,31 +1,28 @@
 body{
 
-    /*background-image: url("img/fundo_jogos.jpg");  Caminho para a imagem de fundo */
+    background-image: url("img/fundo.jpg"); /* Caminho para a imagem de fundo */
     background-size: cover; /* Ajusta a imagem para cobrir toda a área */
     background-repeat: no-repeat; /* Impede que a imagem se repita */
     background-position: center; /* Centraliza a imagem */
-    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
-    url("img/fundo_jogos.jpg") center / cover no-repeat;
 }
 
 .container {
-    
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 colunas com larguras iguais */
     gap: 10px; /* Espaço entre os itens */
-    max-width: 1000px; /* Largura máxima do contêiner */
-    margin: auto; /* Centraliza o contêiner */
+    max-width: 10px; /* Largura máxima do contêiner */
+    margin-left:24%; /* Ajuste da margem esquerda */
     
 }
 
 .container1 {
-    width: 300px; /* Largura fixa do container */
+    width: 200px; /* Largura fixa do container */
     height: 100px; /* Altura fixa do container */
     text-align: center;
     padding: 80px;
     border: 3px solid #4f740c;
     background-color: #1dc518;
-    border-radius: 15%;
+    border-radius: 100% 0 0 0; /* Formato de quarto de círculo */
     display: flex; /* Usando Flexbox */
     flex-direction: column; /* Alinha itens na coluna */
     justify-content: center; /* Centraliza verticalmente */
@@ -44,13 +41,13 @@ body{
 
 
 .container2 {
-    width: 300px; /* Largura fixa do container */
+    width: 200px; /* Largura fixa do container */
     height: 100px; /* Altura fixa do container */
     text-align: center;
     padding: 80px;
     border: 3px solid hsl(0, 95%, 32%);
     background-color: hsl(0, 100%, 49%);
-    border-radius: 15%;
+    border-radius: 0 100% 0 0; /* Formato de quarto de círculo */
     display: flex; /* Usando Flexbox */
     flex-direction: column; /* Alinha itens na coluna */
     justify-content: center; /* Centraliza verticalmente */
@@ -69,13 +66,13 @@ body{
 
 
 .container3 {
-    width: 300px; /* Largura fixa do container */
+    width: 200px; /* Largura fixa do container */
     height: 100px; /* Altura fixa do container */
     text-align: center;
     padding: 80px;
     border: 3px solid #a19706;
     background-color: #f3ef0d;
-    border-radius: 15%;
+    border-radius: 0 0 0 100%; /* Formato de quarto de círculo */
     display: flex; /* Usando Flexbox */
     flex-direction: column; /* Alinha itens na coluna */
     justify-content: center; /* Centraliza verticalmente */
@@ -94,13 +91,13 @@ body{
 
 
 .container4 {
-    width: 300px; /* Largura fixa do container */
+    width: 200px; /* Largura fixa do container */
     height: 100px; /* Altura fixa do container */
     text-align: center;
     padding: 80px;
     border: 3px solid #0d053a;
     background-color: #0f27b4;
-    border-radius: 15%;
+    border-radius: 0 0 100% 0; /* Formato de quarto de círculo */
     display: flex; /* Usando Flexbox */
     flex-direction: column; /* Alinha itens na coluna */
     justify-content: center; /* Centraliza verticalmente */
@@ -120,15 +117,15 @@ body{
 
 .container0 {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 20%;
+    left: 5%;
+    transform: translate(-20%, -20%);
     z-index: 10; 
     background-color: rgba(255, 255, 255, 0.8); 
     padding: 10px; 
     border-radius: 150px;
     overflow: hidden; 
-    width: 300px; /* Largura fixa */
+    width: 250px; /* Largura fixa */
     max-width: 80%; /* Largura máxima */
     max-height: 400px; /* Limite de altura */
     overflow-y: auto; /* Rolagem vertical */
@@ -141,6 +138,26 @@ body{
     object-fit: cover; /* Garante que a imagem preencha o contêiner sem distorção */
     border-radius: 150px; /* Mantém o arredondamento da imagem */
 }
+
+.container_placar {
+    position: absolute;
+    top: 20%;
+    right: -3%;
+    transform: translate(-20%, -20%);
+    z-index: 10; 
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 5px; 
+    border-radius: 25px;
+    overflow: hidden; 
+    width: 250px; /* Largura fixa */
+    max-width: 80%; /* Largura máxima */
+    max-height: 400px; /* Limite de altura */
+    overflow-y: auto; /* Rolagem vertical */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+
+
 
 .button {
     display: inline-block;
