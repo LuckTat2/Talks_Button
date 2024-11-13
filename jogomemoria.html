@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos básicos para os botões */
+        .container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .container > div {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #000;
+            cursor: pointer;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+        #score {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        #message {
+            color: red;
+            margin-top: 10px;
+        }
+        .button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jogo da Memória</h1>
+    <div id="score">Pontuação: 0</div>
+    <div id="message"></div>
+    
+    <div class="container">
+        <div class="container1" onclick="processPlayerInput(1)" id="button1">
+            <img src="img/b1.jpg" width="80">
+        </div>
+        <div class="container2" onclick="processPlayerInput(2)" id="button2">
+            <img src="img/b2.jpg" width="80">
+        </div>
+        <div class="container3" onclick="processPlayerInput(3)" id="button3">
+            <img src="img/b3.jpg" width="80">
+        </div>
+        <div class="container4" onclick="processPlayerInput(4)" id="button4">
+            <img src="img/b4.jpg" width="80">
+        </div>
+    </div>
+
+    <button onclick="startGame()" class="button">Iniciar Jogo</button>
+
+    <script>
+        let sequence = [];
+        let playerSequence = [];
+        let score = 0;
+        let buttons = document.querySelectorAll('.container > div');
+
+        function startGame() {
+            sequence = [];
+            playerSequence = [];
+            score = 0;
+            updateScore();
+            document.getElementById('message').textContent = '';
+            nextRound();
+        }
+
+        function nextRound() {
+            playerSequence = [];
+            sequence.push(Math.floor(Math.random() * 4) + 1);
+            displaySequence();
+        }
+
+        function displaySequence() {
+            let delay = 500;
+            sequence.forEach((num, index) => {
+                setTimeout(() => {
+                    playButton(num);
+                }, delay * (index + 1));
+            });
+            setTimeout(() => {
+                enablePlayerInput();
+            }, delay * sequence.length + 500);
+        }
+
+        function playButton(num) {
+            const button = document.querySelector(`.container${num}`);
+            button.classList.add('highlight');
+            setTimeout(() => button.classList.remove('highlight'), 400);
+        }
+
+        function enablePlayerInput() {
+            buttons.forEach(button => button.addEventListener('click', handlePlayerClick));
+            document.addEventListener('keydown', handlePlayerKeydown);
+        }
+
+        function disablePlayerInput() {
+            buttons.forEach(button => button.removeEventListener('click', handlePlayerClick));
+            document.removeEventListener('keydown', handlePlayerKeydown);
+        }
+
+        function handlePlayerClick(event) {
+            const clickedButton = parseInt(event.target.parentNode.id.replace('button', ''));
+            processPlayerInput(clickedButton);
+        }
+
+        function handlePlayerKeydown(event) {
+            const key = event.key;
+            if (key >= '1' && key <= '4') {
+                processPlayerInput(parseInt(key));
+            }
+        }
+
+        function processPlayerInput(buttonNumber) {
+            playerSequence.push(buttonNumber);
+            playButton(buttonNumber);
+
+            if (!checkPlayerSequence()) {
+                document.getElementById('message').textContent = 'Você errou! Tente novamente.';
+                disablePlayerInput();
+                return;
+            }
+
+            if (playerSequence.length === sequence.length) {
+                score++;
+                updateScore();
+                disablePlayerInput();
+                setTimeout(nextRound, 1000);
+            }
+        }
+
+        function checkPlayerSequence() {
+            return playerSequence.every((num, index) => num === sequence[index]);
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = `Pontuação: ${score}`;
+        }
+    </script>
+</body>
+</html>

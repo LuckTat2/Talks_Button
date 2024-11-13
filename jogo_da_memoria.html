@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet" href="styles_memoria.css">
+    <script>
+         let sequence = [];
+        let playerSequence = [];
+        let score = 0;
+        let buttons = document.querySelectorAll('.container > div');
+
+        function startGame() {
+            sequence = [];
+            playerSequence = [];
+            score = 0;
+            updateScore();
+            document.getElementById('message').textContent = '';
+            nextRound();
+        }
+
+        function nextRound() {
+            playerSequence = [];
+            sequence.push(Math.floor(Math.random() * 4) + 1);
+            displaySequence();
+        }
+
+        function displaySequence() {
+            let delay = 500;
+            sequence.forEach((num, index) => {
+                setTimeout(() => {
+                    playButton(num);
+                }, delay * (index + 1));
+            });
+            setTimeout(() => {
+                enablePlayerInput();
+            }, delay * sequence.length + 500);
+        }
+
+        function playButton(num) {
+            const button = document.querySelector(`.container${num}`);
+            button.classList.add('highlight');
+            setTimeout(() => button.classList.remove('highlight'), 400);
+        }
+
+        function enablePlayerInput() {
+            buttons.forEach(button => button.addEventListener('click', handlePlayerClick));
+            document.addEventListener('keydown', handlePlayerKeydown);
+        }
+
+        function disablePlayerInput() {
+            buttons.forEach(button => button.removeEventListener('click', handlePlayerClick));
+            document.removeEventListener('keydown', handlePlayerKeydown);
+        }
+
+        function handlePlayerClick(event) {
+            const clickedButton = parseInt(event.target.parentNode.id.replace('button', ''));
+            processPlayerInput(clickedButton);
+        }
+
+        function handlePlayerKeydown(event) {
+            const key = event.key;
+            if (key >= '1' && key <= '4') {
+                processPlayerInput(parseInt(key));
+            }
+        }
+
+        function processPlayerInput(buttonNumber) {
+            playerSequence.push(buttonNumber);
+            playButton(buttonNumber);
+
+            if (!checkPlayerSequence()) {
+                document.getElementById('message').textContent = 'Você errou! Tente novamente.';
+                disablePlayerInput();
+                return;
+            }
+
+            if (playerSequence.length === sequence.length) {
+                score++;
+                updateScore();
+                disablePlayerInput();
+                setTimeout(nextRound, 1000);
+            }
+        }
+
+        function checkPlayerSequence() {
+            return playerSequence.every((num, index) => num === sequence[index]);
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = `Pontuação: ${score}`;
+        }
+
+        // Temporizador para inatividade (10 segundos de inatividade)
+        let inatividadeTemporizador;
+
+        function reiniciarTemporizador() {
+            clearTimeout(inatividadeTemporizador);
+            inatividadeTemporizador = setTimeout(function() {
+                window.location.href = 'pagina1.html';
+            }, 10000); // 10 segundos
+        }
+
+        // Reiniciar o temporizador ao detectar interação
+        window.onload = reiniciarTemporizador;
+        document.onmousemove = reiniciarTemporizador;
+        document.onkeydown = reiniciarTemporizador;
+        document.onclick = reiniciarTemporizador;
+        document.onscroll = reiniciarTemporizador;
+    </script>
+</head>
+<body>
+
+    <div class="container_placar">
+        <h1>Jogo da Memória</h1>
+        <button onclick="startGame()" class="button">Iniciar Jogo</button>
+        <div id="score">Pontuação: 0</div>
+        <div id="message"></div>
+        
+    </div>
+    
+  
+  
+  <div class="container">
+    
+    <div class="container1" onclick="executeAnimation('.container1', 'pagina1.html')">
+           
+    </div>
+
+    <div class="container2" onclick="executeAnimation('.container2', 'pagina2.html')">
+            
+    </div>
+
+    <div class="container3" onclick="executeAnimation('.container3', 'pagina3.html')">
+            
+    </div>
+
+    <div class="container4" onclick="executeAnimation('.container4', 'pagina4.html')">
+
+    </div>
+
+    <div class="container0">
+        <img src="img/gatinhogif.gif" alt="Descrição da imagem">
+        
+        
+    </div>
+    
+</body>
+
+</html>

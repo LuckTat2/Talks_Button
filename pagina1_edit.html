@@ -12,7 +12,7 @@
         function reiniciarTemporizador() {
             clearTimeout(inatividadeTemporizador);
             inatividadeTemporizador = setTimeout(function() {
-                window.location.href = 'index.html';
+                window.location.href = 'pagina1.html';
             }, 5000); // 5 segundos
         }
 
@@ -54,19 +54,24 @@
 <body>
     <div class="container">
         <div class="container1" onclick="executeAnimation('.container1', 'jogo_da_memoria.html')">
+            
             <img src="img/jogo_memoria.jpg" width="100">
+            <a href="" class="button">Editar</a>
         </div>
 
         <div class="container2" onclick="executeAnimation('.container2', '')">
             <img src="img/jogo_bate_marmota.webp" alt="Descrição da imagem" width="100">
+            <a href="" class="button">Editar</a>
         </div>
 
         <div class="container3" onclick="executeAnimation('.container3', '')">
             <img src="img/jogo_guitar.jpg" alt="Descrição da imagem" width="100">
+            <a href="" class="button">Editar</a>
         </div>
 
         <div class="container4" onclick="executeAnimation('.container4', '')">
             <img src="img/jogo_pinball.jpg" alt="Descrição da imagem" width="100">
+            <a href="" class="button">Editar</a>
         </div>
     </div>
 
@@ -76,6 +81,6 @@
 
 
    
-    <a href="pagina1_edit.html" class="button">Editar</a>
+    <a href="pagina1.html" class="button">Confirmar</a>
 </body>
 </html>
