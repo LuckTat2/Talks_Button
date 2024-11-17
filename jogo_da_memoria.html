@@ -7,151 +7,155 @@
     <link rel="stylesheet" href="styles_memoria.css">
     <script>
        let sequence = [];
-let playerSequence = [];
-let score = 0;
-const sounds = {
-    1: new Audio('sounds/sound1.mp3'),
-    2: new Audio('sounds/sound2.mp3'),
-    3: new Audio('sounds/sound3.mp3'),
-    4: new Audio('sounds/sound4.mp3'),
-    start: new Audio('sounds/start.mp3'),
-    error: new Audio('sounds/error.mp3')
-};
+       let playerSequence = [];
+       let score = 0;
+       const sounds = {
+           1: new Audio('sounds/sound1.mp3'),
+           2: new Audio('sounds/sound2.mp3'),
+           3: new Audio('sounds/sound3.mp3'),
+           4: new Audio('sounds/sound4.mp3'),
+           start: new Audio('sounds/start.mp3'),
+           error: new Audio('sounds/error.mp3')
+       };
 
-let inactivityTimer;
-const INACTIVITY_TIME = 10000; // 10 segundos de inatividade
+       let inactivityTimer;
+       const INACTIVITY_TIME = 10000; // 10 segundos de inatividade
 
-document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.container > div');
-    const scoreDisplay = document.getElementById('score');
-    const messageDisplay = document.getElementById('message');
+       document.addEventListener('DOMContentLoaded', () => {
+           const buttons = document.querySelectorAll('.container > div');
+           const scoreDisplay = document.getElementById('score');
+           const messageDisplay = document.getElementById('message');
 
-    // Reinicia o timer de inatividade
-    function resetInactivityTimer() {
-        clearTimeout(inactivityTimer);
-        inactivityTimer = setTimeout(() => {
-            window.location.href = 'pagina1.html'; // Redireciona para a página 1 após 10 segundos
-        }, INACTIVITY_TIME);
-    }
+           // Reinicia o timer de inatividade
+           function resetInactivityTimer() {
+               clearTimeout(inactivityTimer);
+               inactivityTimer = setTimeout(() => {
+                   window.location.href = 'pagina1.html'; // Redireciona para a página 1 após 10 segundos
+               }, INACTIVITY_TIME);
+           }
 
-    function playSound(num) {
-        if (sounds[num]) {
-            sounds[num].currentTime = 0;
-            sounds[num].play();
-        }
-    }
+           // Inicia o timer assim que a página for carregada
+           resetInactivityTimer();
 
-    function highlightButton(button) {
-        button.classList.add('highlight');
-        setTimeout(() => button.classList.remove('highlight'), 300);
-    }
+           function playSound(num) {
+               if (sounds[num]) {
+                   sounds[num].currentTime = 0;
+                   sounds[num].play();
+               }
+           }
 
-    function playButton(num) {
-        const button = document.querySelector(`#button${num}`);
-        if (button) {
-            highlightButton(button);
-            playSound(num);
-        }
-    }
+           function highlightButton(button) {
+               button.classList.add('highlight');
+               setTimeout(() => button.classList.remove('highlight'), 300);
+           }
 
-    function startGame() {
-        sequence = [];
-        playerSequence = [];
-        score = 0;
-        updateScore();
-        messageDisplay.textContent = 'Memorize a sequência!';
-        playStartAnimation(() => nextRound());
-    }
+           function playButton(num) {
+               const button = document.querySelector(`#button${num}`);
+               if (button) {
+                   highlightButton(button);
+                   playSound(num);
+               }
+           }
 
-    function playStartAnimation(callback) {
-        sounds.start.play();
-        let delay = 200;
-        buttons.forEach((button, index) => {
-            setTimeout(() => highlightButton(button), delay * (index + 1));
-        });
-        setTimeout(() => callback(), delay * buttons.length + 500);
-    }
+           function startGame() {
+               sequence = [];
+               playerSequence = [];
+               score = 0;
+               updateScore();
+               messageDisplay.textContent = 'Memorize a sequência!';
+               playStartAnimation(() => nextRound());
+           }
 
-    function nextRound() {
-        playerSequence = [];
-        sequence.push(Math.floor(Math.random() * 4) + 1);
-        messageDisplay.textContent = `Rodada ${sequence.length}`;
-        playSequence();
-    }
+           function playStartAnimation(callback) {
+               sounds.start.play();
+               let delay = 200;
+               buttons.forEach((button, index) => {
+                   setTimeout(() => highlightButton(button), delay * (index + 1));
+               });
+               setTimeout(() => callback(), delay * buttons.length + 500);
+           }
 
-    function playSequence() {
-        let delay = 500;
-        sequence.forEach((num, index) => {
-            setTimeout(() => playButton(num), delay * (index + 1));
-        });
-        setTimeout(() => enablePlayerInput(), delay * sequence.length + 500);
-    }
+           function nextRound() {
+               playerSequence = [];
+               sequence.push(Math.floor(Math.random() * 4) + 1);
+               messageDisplay.textContent = `Rodada ${sequence.length}`;
+               playSequence();
+           }
 
-    function enablePlayerInput() {
-        buttons.forEach(button => button.addEventListener('click', handlePlayerClick));
-        document.addEventListener('keydown', handleKeyPress);
-        resetInactivityTimer(); // Inicia o timer ao permitir entrada do jogador
-    }
+           function playSequence() {
+               let delay = 500;
+               sequence.forEach((num, index) => {
+                   setTimeout(() => playButton(num), delay * (index + 1));
+               });
+               setTimeout(() => enablePlayerInput(), delay * sequence.length + 500);
+           }
 
-    function disablePlayerInput() {
-        buttons.forEach(button => button.removeEventListener('click', handlePlayerClick));
-        document.removeEventListener('keydown', handleKeyPress);
-    }
+           function enablePlayerInput() {
+               buttons.forEach(button => button.addEventListener('click', handlePlayerClick));
+               document.addEventListener('keydown', handleKeyPress);
+               resetInactivityTimer(); // Inicia o timer ao permitir entrada do jogador
+           }
 
-    function handlePlayerClick(event) {
-        const button = event.target;
-        const buttonNum = parseInt(button.id.replace('button', ''));
-        if (!isNaN(buttonNum)) {
-            processPlayerInput(buttonNum);
-            resetInactivityTimer(); // Reinicia o timer sempre que o jogador clica
-        }
-    }
+           function disablePlayerInput() {
+               buttons.forEach(button => button.removeEventListener('click', handlePlayerClick));
+               document.removeEventListener('keydown', handleKeyPress);
+           }
 
-    function handleKeyPress(event) {
-        const key = event.key;
-        if (['1', '2', '3', '4'].includes(key)) {
-            const buttonNum = parseInt(key);
-            processPlayerInput(buttonNum);
-            resetInactivityTimer(); // Reinicia o timer sempre que o jogador pressiona uma tecla
-        }
-    }
+           function handlePlayerClick(event) {
+               const button = event.target;
+               const buttonNum = parseInt(button.id.replace('button', ''));
+               if (!isNaN(buttonNum)) {
+                   processPlayerInput(buttonNum);
+                   resetInactivityTimer(); // Reinicia o timer sempre que o jogador clica
+               }
+           }
 
-    function processPlayerInput(num) {
-        playerSequence.push(num);
-        playButton(num);
+           function handleKeyPress(event) {
+               const key = event.key;
+               if (['1', '2', '3', '4'].includes(key)) {
+                   const buttonNum = parseInt(key);
+                   processPlayerInput(buttonNum);
+                   resetInactivityTimer(); // Reinicia o timer sempre que o jogador pressiona uma tecla
+               }
+           }
 
-        if (!checkPlayerSequence()) {
-            playErrorAnimation();
-            messageDisplay.textContent = 'Você errou! Tente novamente.';
-            disablePlayerInput();
-            return;
-        }
+           function processPlayerInput(num) {
+               playerSequence.push(num);
+               // Verifica se a sequência está correta antes de executar o som do botão
+               if (!checkPlayerSequence()) {
+                   playErrorAnimation();
+                   messageDisplay.textContent = 'Você errou! Tente novamente.';
+                   disablePlayerInput();
+                   return;
+               }
 
-        if (playerSequence.length === sequence.length) {
-            score++;
-            updateScore();
-            disablePlayerInput();
-            setTimeout(() => nextRound(), 1000);
-        }
-    }
+               // Só toca o som do botão se a sequência estiver correta
+               playButton(num);
 
-    function checkPlayerSequence() {
-        return playerSequence.every((num, index) => num === sequence[index]);
-    }
+               if (playerSequence.length === sequence.length) {
+                   score++;
+                   updateScore();
+                   disablePlayerInput();
+                   setTimeout(() => nextRound(), 1000);
+               }
+           }
 
-    function playErrorAnimation() {
-        sounds.error.play();
-        buttons.forEach(button => button.classList.add('highlight'));
-        setTimeout(() => buttons.forEach(button => button.classList.remove('highlight')), 500);
-    }
+           function checkPlayerSequence() {
+               return playerSequence.every((num, index) => num === sequence[index]);
+           }
 
-    function updateScore() {
-        scoreDisplay.textContent = `Pontuação: ${score}`;
-    }
+           function playErrorAnimation() {
+               sounds.error.play();
+               buttons.forEach(button => button.classList.add('highlight'));
+               setTimeout(() => buttons.forEach(button => button.classList.remove('highlight')), 500);
+           }
 
-    document.getElementById('startButton').addEventListener('click', startGame);
-});
+           function updateScore() {
+               scoreDisplay.textContent = `Pontuação: ${score}`;
+           }
 
+           document.getElementById('startButton').addEventListener('click', startGame);
+       });
     </script>
 </head>
 <body>
@@ -171,8 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <div class="container0">
         <img src="img/gatinhogif.gif" alt="Descrição da imagem">
-        
-        
     </div>
 </body>
 </html>
