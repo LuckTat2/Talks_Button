@@ -180,12 +180,14 @@ body{
 
 /* Estilo para cada botão de vídeo */
 .video-button {
+    position: relative; /* Para animação controlada */
     padding: 10px;
     border: 2px solid #FF914D;
     border-radius: 15px;
     background-color: #FFF3E0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    transition: box-shadow 0.3s, transform 0.3s ease;
 }
 
 /* Estilo para a imagem dentro de cada botão de vídeo */
@@ -194,6 +196,12 @@ body{
     height: auto;
     border-radius: 10px;
     margin-bottom: 10px;
+}
+
+/* Classe de destaque */
+.video-button.highlight {
+    transform: scale(1.05); /* Leve ampliação */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Destaque mais intenso */
 }
 
 /* Estilo para o botão de cada vídeo */

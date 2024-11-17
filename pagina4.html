@@ -5,43 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página 4</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Destaque para animação */
+        .highlight {
+            transform: scale(1.1);
+            transition: transform 0.6s ease;
+        }
+    </style>
 </head>
 <body>
-    <!-- Contêiner de vídeos -->
     <div class="video-container">
-        <!-- Primeiro botão com imagem ancorada para o YouTube -->
-        <div class="video-button">
-            <a href="https://www.youtube.com/watch?v=7nMMoTOJbz8" target="_blank">
-                <img src="img/imagem1.webp" alt="Imagem do vídeo 1">
-                <button class="styled-button">Assistir Vídeo 1</button>
-            </a>
+        <div class="video-button" id="button1">
+            <img src="img/imagem1.webp" alt="Imagem do vídeo 1">
+            <button class="styled-button">Comunicação alternativa</button>
         </div>
-
-        <!-- Segundo botão com imagem ancorada para o YouTube -->
-        <div class="video-button">
-            <a href="https://www.youtube.com/watch?v=khoKBJ3pYNI" target="_blank">
-                <img src="img/imagem2.webp" alt="Imagem do vídeo 2">
-                <button class="styled-button">Assistir Vídeo 2</button>
-            </a>
+        <div class="video-button" id="button2">
+            <img src="img/imagem2.webp" alt="Imagem do vídeo 2">
+            <button class="styled-button">Desenho livre</button>
         </div>
-
-        <!-- Terceiro botão com imagem ancorada para o YouTube -->
-        <div class="video-button">
-            <a href="https://www.youtube.com/watch?v=6_DdeXuO9R0" target="_blank">
-                <img src="img/imagem3.webp" alt="Imagem do vídeo 3">
-                <button class="styled-button">Assistir Vídeo 3</button>
-            </a>
+        <div class="video-button" id="button3">
+            <img src="img/imagem3.webp" alt="Imagem do vídeo 3">
+            <button class="styled-button">Pintar desenho</button>
         </div>
-
-        <!-- Quarto botão com imagem ancorada para o YouTube -->
-        <div class="video-button">
-            <a href="https://www.youtube.com/watch?v=LJLPvWsWeO4" target="_blank">
-                <img src="img/imagem4.webp" alt="Imagem do vídeo 4">
-                <button class="styled-button">Assistir Vídeo 4</button>
-            </a>
+        <div class="video-button" id="button4">
+            <img src="img/imagem4.webp" alt="Imagem do vídeo 4">
+            <button class="styled-button">Atividades adaptativas</button>
         </div>
     </div>
-
+    <!-- Botão de voltar -->
     <a href="index.html" class="button">Voltar para a página inicial</a>
+
+    <script>
+        function executeAnimation(containerId, url) {
+            const container = document.querySelector(containerId);
+            container.classList.add('highlight'); // Adiciona a classe de destaque
+
+            setTimeout(function () {
+                container.classList.remove('highlight'); // Remove o destaque após a animação
+                window.open(url, '_blank'); // Abre o URL em uma nova aba
+            }, 600); // Tempo para a animação
+        }
+
+        // Adicionando eventos aos botões
+        document.querySelector('#button1 .styled-button').addEventListener('click', function () {
+            executeAnimation('#button1', 'https://web.expressia.life/aac');
+        });
+
+        document.querySelector('#button2 .styled-button').addEventListener('click', function () {
+            executeAnimation('#button2', 'https://paintonline.com.br/paint.html');
+        });
+
+        document.querySelector('#button3 .styled-button').addEventListener('click', function () {
+            executeAnimation('#button3', 'https://www.jogosgratisparacriancas.com/colorir/index.php');
+        });
+
+        document.querySelector('#button4 .styled-button').addEventListener('click', function () {
+            executeAnimation('#button4', 'https://web.expressia.life/activities?tab=activity-store&fallback=true');
+        });
+
+        // Adicionando atalhos de teclado (1, 2, 3, 4)
+        document.addEventListener('keydown', function(event) {
+            if (event.key === '1') {
+                executeAnimation('#button1', 'https://web.expressia.life/aac');
+            } else if (event.key === '2') {
+                executeAnimation('#button2', 'https://paintonline.com.br/paint.html');
+            } else if (event.key === '3') {
+                executeAnimation('#button3', 'https://www.jogosgratisparacriancas.com/colorir/index.php');
+            } else if (event.key === '4') {
+                executeAnimation('#button4', 'https://web.expressia.life/activities?tab=activity-store&fallback=true');
+            }
+        });
+    </script>
 </body>
 </html>
