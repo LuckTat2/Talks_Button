@@ -6,138 +6,167 @@
     <title>Jogo da Memória</title>
     <link rel="stylesheet" href="styles_memoria.css">
     <script>
-         let sequence = [];
-        let playerSequence = [];
-        let score = 0;
-        let buttons = document.querySelectorAll('.container > div');
+       let sequence = [];
+let playerSequence = [];
+let score = 0;
+const sounds = {
+    1: new Audio('sounds/sound1.mp3'),
+    2: new Audio('sounds/sound2.mp3'),
+    3: new Audio('sounds/sound3.mp3'),
+    4: new Audio('sounds/sound4.mp3'),
+    start: new Audio('sounds/start.mp3'),
+    error: new Audio('sounds/error.mp3')
+};
 
-        function startGame() {
-            sequence = [];
-            playerSequence = [];
-            score = 0;
+let inactivityTimer;
+const INACTIVITY_TIME = 10000; // 10 segundos de inatividade
+
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.container > div');
+    const scoreDisplay = document.getElementById('score');
+    const messageDisplay = document.getElementById('message');
+
+    // Reinicia o timer de inatividade
+    function resetInactivityTimer() {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(() => {
+            window.location.href = 'pagina1.html'; // Redireciona para a página 1 após 10 segundos
+        }, INACTIVITY_TIME);
+    }
+
+    function playSound(num) {
+        if (sounds[num]) {
+            sounds[num].currentTime = 0;
+            sounds[num].play();
+        }
+    }
+
+    function highlightButton(button) {
+        button.classList.add('highlight');
+        setTimeout(() => button.classList.remove('highlight'), 300);
+    }
+
+    function playButton(num) {
+        const button = document.querySelector(`#button${num}`);
+        if (button) {
+            highlightButton(button);
+            playSound(num);
+        }
+    }
+
+    function startGame() {
+        sequence = [];
+        playerSequence = [];
+        score = 0;
+        updateScore();
+        messageDisplay.textContent = 'Memorize a sequência!';
+        playStartAnimation(() => nextRound());
+    }
+
+    function playStartAnimation(callback) {
+        sounds.start.play();
+        let delay = 200;
+        buttons.forEach((button, index) => {
+            setTimeout(() => highlightButton(button), delay * (index + 1));
+        });
+        setTimeout(() => callback(), delay * buttons.length + 500);
+    }
+
+    function nextRound() {
+        playerSequence = [];
+        sequence.push(Math.floor(Math.random() * 4) + 1);
+        messageDisplay.textContent = `Rodada ${sequence.length}`;
+        playSequence();
+    }
+
+    function playSequence() {
+        let delay = 500;
+        sequence.forEach((num, index) => {
+            setTimeout(() => playButton(num), delay * (index + 1));
+        });
+        setTimeout(() => enablePlayerInput(), delay * sequence.length + 500);
+    }
+
+    function enablePlayerInput() {
+        buttons.forEach(button => button.addEventListener('click', handlePlayerClick));
+        document.addEventListener('keydown', handleKeyPress);
+        resetInactivityTimer(); // Inicia o timer ao permitir entrada do jogador
+    }
+
+    function disablePlayerInput() {
+        buttons.forEach(button => button.removeEventListener('click', handlePlayerClick));
+        document.removeEventListener('keydown', handleKeyPress);
+    }
+
+    function handlePlayerClick(event) {
+        const button = event.target;
+        const buttonNum = parseInt(button.id.replace('button', ''));
+        if (!isNaN(buttonNum)) {
+            processPlayerInput(buttonNum);
+            resetInactivityTimer(); // Reinicia o timer sempre que o jogador clica
+        }
+    }
+
+    function handleKeyPress(event) {
+        const key = event.key;
+        if (['1', '2', '3', '4'].includes(key)) {
+            const buttonNum = parseInt(key);
+            processPlayerInput(buttonNum);
+            resetInactivityTimer(); // Reinicia o timer sempre que o jogador pressiona uma tecla
+        }
+    }
+
+    function processPlayerInput(num) {
+        playerSequence.push(num);
+        playButton(num);
+
+        if (!checkPlayerSequence()) {
+            playErrorAnimation();
+            messageDisplay.textContent = 'Você errou! Tente novamente.';
+            disablePlayerInput();
+            return;
+        }
+
+        if (playerSequence.length === sequence.length) {
+            score++;
             updateScore();
-            document.getElementById('message').textContent = '';
-            nextRound();
+            disablePlayerInput();
+            setTimeout(() => nextRound(), 1000);
         }
+    }
 
-        function nextRound() {
-            playerSequence = [];
-            sequence.push(Math.floor(Math.random() * 4) + 1);
-            displaySequence();
-        }
+    function checkPlayerSequence() {
+        return playerSequence.every((num, index) => num === sequence[index]);
+    }
 
-        function displaySequence() {
-            let delay = 500;
-            sequence.forEach((num, index) => {
-                setTimeout(() => {
-                    playButton(num);
-                }, delay * (index + 1));
-            });
-            setTimeout(() => {
-                enablePlayerInput();
-            }, delay * sequence.length + 500);
-        }
+    function playErrorAnimation() {
+        sounds.error.play();
+        buttons.forEach(button => button.classList.add('highlight'));
+        setTimeout(() => buttons.forEach(button => button.classList.remove('highlight')), 500);
+    }
 
-        function playButton(num) {
-            const button = document.querySelector(`.container${num}`);
-            button.classList.add('highlight');
-            setTimeout(() => button.classList.remove('highlight'), 400);
-        }
+    function updateScore() {
+        scoreDisplay.textContent = `Pontuação: ${score}`;
+    }
 
-        function enablePlayerInput() {
-            buttons.forEach(button => button.addEventListener('click', handlePlayerClick));
-            document.addEventListener('keydown', handlePlayerKeydown);
-        }
+    document.getElementById('startButton').addEventListener('click', startGame);
+});
 
-        function disablePlayerInput() {
-            buttons.forEach(button => button.removeEventListener('click', handlePlayerClick));
-            document.removeEventListener('keydown', handlePlayerKeydown);
-        }
-
-        function handlePlayerClick(event) {
-            const clickedButton = parseInt(event.target.parentNode.id.replace('button', ''));
-            processPlayerInput(clickedButton);
-        }
-
-        function handlePlayerKeydown(event) {
-            const key = event.key;
-            if (key >= '1' && key <= '4') {
-                processPlayerInput(parseInt(key));
-            }
-        }
-
-        function processPlayerInput(buttonNumber) {
-            playerSequence.push(buttonNumber);
-            playButton(buttonNumber);
-
-            if (!checkPlayerSequence()) {
-                document.getElementById('message').textContent = 'Você errou! Tente novamente.';
-                disablePlayerInput();
-                return;
-            }
-
-            if (playerSequence.length === sequence.length) {
-                score++;
-                updateScore();
-                disablePlayerInput();
-                setTimeout(nextRound, 1000);
-            }
-        }
-
-        function checkPlayerSequence() {
-            return playerSequence.every((num, index) => num === sequence[index]);
-        }
-
-        function updateScore() {
-            document.getElementById('score').textContent = `Pontuação: ${score}`;
-        }
-
-        // Temporizador para inatividade (10 segundos de inatividade)
-        let inatividadeTemporizador;
-
-        function reiniciarTemporizador() {
-            clearTimeout(inatividadeTemporizador);
-            inatividadeTemporizador = setTimeout(function() {
-                window.location.href = 'pagina1.html';
-            }, 10000); // 10 segundos
-        }
-
-        // Reiniciar o temporizador ao detectar interação
-        window.onload = reiniciarTemporizador;
-        document.onmousemove = reiniciarTemporizador;
-        document.onkeydown = reiniciarTemporizador;
-        document.onclick = reiniciarTemporizador;
-        document.onscroll = reiniciarTemporizador;
     </script>
 </head>
 <body>
-
     <div class="container_placar">
         <h1>Jogo da Memória</h1>
-        <button onclick="startGame()" class="button">Iniciar Jogo</button>
+        <button id="startButton" class="button">Iniciar Jogo</button>
         <div id="score">Pontuação: 0</div>
         <div id="message"></div>
-        
-    </div>
-    
-  
-  
-  <div class="container">
-    
-    <div class="container1" onclick="executeAnimation('.container1', 'pagina1.html')">
-           
     </div>
 
-    <div class="container2" onclick="executeAnimation('.container2', 'pagina2.html')">
-            
-    </div>
-
-    <div class="container3" onclick="executeAnimation('.container3', 'pagina3.html')">
-            
-    </div>
-
-    <div class="container4" onclick="executeAnimation('.container4', 'pagina4.html')">
-
+    <div class="container">
+        <div class="container1" id="button1"></div>
+        <div class="container2" id="button2"></div>
+        <div class="container3" id="button3"></div>
+        <div class="container4" id="button4"></div>
     </div>
 
     <div class="container0">
@@ -145,7 +174,5 @@
         
         
     </div>
-    
 </body>
-
 </html>

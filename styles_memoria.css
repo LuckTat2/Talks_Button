@@ -141,19 +141,47 @@ body{
 
 .container_placar {
     position: absolute;
-    top: 20%;
-    right: -3%;
-    transform: translate(-20%, -20%);
+    top: 30%; /* Alinha na mesma altura do container0 */
+    right: 1%; /* Ajusta para mover mais à direita */
+    transform: translate(0, -50%); /* Mantém a centralização vertical */
     z-index: 10; 
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 5px; 
-    border-radius: 25px;
-    overflow: hidden; 
-    width: 250px; /* Largura fixa */
-    max-width: 80%; /* Largura máxima */
-    max-height: 400px; /* Limite de altura */
+    background-color: rgba(255, 255, 255, 0.9); /* Opacidade ligeiramente maior para o fundo */
+    padding: 10px; /* Menos espaçamento interno */
+    border-radius: 12px; /* Bordas mais suaves */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Sombra mais sutil e com maior desfoque */
+    width: 250px; /* Largura ajustada para menor tamanho */
+    max-width: 90%; /* Largura máxima para não ultrapassar a tela */
+    max-height: 300px; /* Limite de altura para um tamanho mais compacto */
     overflow-y: auto; /* Rolagem vertical */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+    background: linear-gradient(135deg, #ffffff, #e0f7fa); /* Gradiente suave de fundo */
+    font-family: 'Arial', sans-serif; /* Fonte mais legível */
+    color: #333; /* Cor de texto mais contrastante */
+    border: 2px solid #4caf50; /* Borda com cor verde, para destaque */
+    text-align: center; /* Centraliza o conteúdo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transições suaves ao interagir */
+}
+
+.container_placar:hover {
+    transform: translate(0, -55%); /* Efeito de subida suave ao passar o mouse */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Aumenta a sombra ao passar o mouse */
+}
+
+.container_placar h1 {
+    font-size: 1.8rem; /* Tamanho de fonte maior para o título */
+    color: #4caf50; /* Cor de título em verde */
+    margin-bottom: 10px; /* Espaço abaixo do título */
+}
+
+.container_placar #score {
+    font-size: 1.2rem; /* Aumenta o tamanho da pontuação */
+    font-weight: bold; /* Deixa a pontuação em negrito */
+    margin-top: 20px; /* Espaço acima da pontuação */
+}
+
+.container_placar #message {
+    font-size: 1rem;
+    margin-top: 10px; /* Espaço acima da mensagem */
+    color: #555; /* Cor mais suave para a mensagem */
 }
 
 
@@ -179,7 +207,7 @@ body{
         transform: scale(1); /* Tamanho inicial */
     }
     50% {
-        background-color: rgba(255, 255, 0, 0.8); /* Cor de fundo intermediária */
+        background-color: rgb(255, 217, 0); /* Cor de fundo intermediária */
         transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
     }
     100% {
