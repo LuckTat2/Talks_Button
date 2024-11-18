@@ -9,6 +9,9 @@
        let sequence = [];
        let playerSequence = [];
        let score = 0;
+       let highScore = 0;
+       const INACTIVITY_TIME = 10000; // 10 segundos
+       let inactivityTimer;
        const sounds = {
            1: new Audio('sounds/sound1.mp3'),
            2: new Audio('sounds/sound2.mp3'),
@@ -18,24 +21,49 @@
            error: new Audio('sounds/error.mp3')
        };
 
-       let inactivityTimer;
-       const INACTIVITY_TIME = 10000; // 10 segundos de inatividade
+       let isGameStarted = false;
 
        document.addEventListener('DOMContentLoaded', () => {
            const buttons = document.querySelectorAll('.container > div');
            const scoreDisplay = document.getElementById('score');
+           const highScoreDisplay = document.getElementById('high-score');
            const messageDisplay = document.getElementById('message');
+           const imageElement = document.querySelector('.container0 img'); // Referência à imagem do gif
 
-           // Reinicia o timer de inatividade
+           // Exibe mensagem inicial
+           messageDisplay.textContent = 'Pressione qualquer botão para iniciar!';
+
+           // Configura o timer de inatividade ao carregar a página
+           resetInactivityTimer();
+
+           function initializeGame() {
+               if (!isGameStarted) {
+                   isGameStarted = true;
+                   resetInactivityTimer(); // Reinicia o timer ao iniciar o jogo
+                   startGame();
+               }
+           }
+
+           // Adiciona eventos para interações iniciais
+           buttons.forEach(button => button.addEventListener('click', initializeGame));
+           document.addEventListener('keydown', event => {
+               if (['1', '2', '3', '4'].includes(event.key)) {
+                   initializeGame();
+               }
+           });
+
+           // Configura e reseta o timer de inatividade
            function resetInactivityTimer() {
                clearTimeout(inactivityTimer);
                inactivityTimer = setTimeout(() => {
-                   window.location.href = 'pagina1.html'; // Redireciona para a página 1 após 10 segundos
+                   window.location.href = 'pagina1.html'; // Redireciona após inatividade
                }, INACTIVITY_TIME);
            }
 
-           // Inicia o timer assim que a página for carregada
-           resetInactivityTimer();
+           // Reinicia o timer em qualquer interação do usuário
+           document.addEventListener('mousemove', resetInactivityTimer);
+           document.addEventListener('click', resetInactivityTimer);
+           document.addEventListener('keydown', resetInactivityTimer);
 
            function playSound(num) {
                if (sounds[num]) {
@@ -63,10 +91,12 @@
                score = 0;
                updateScore();
                messageDisplay.textContent = 'Memorize a sequência!';
+               setImage('img/gatinhogif.gif'); // Define a imagem padrão ao iniciar
                playStartAnimation(() => nextRound());
            }
 
            function playStartAnimation(callback) {
+               sounds.start.currentTime = 0;
                sounds.start.play();
                let delay = 200;
                buttons.forEach((button, index) => {
@@ -79,6 +109,7 @@
                playerSequence = [];
                sequence.push(Math.floor(Math.random() * 4) + 1);
                messageDisplay.textContent = `Rodada ${sequence.length}`;
+               setImage('img/gatinhogif.gif'); // Restaura a imagem padrão
                playSequence();
            }
 
@@ -93,7 +124,6 @@
            function enablePlayerInput() {
                buttons.forEach(button => button.addEventListener('click', handlePlayerClick));
                document.addEventListener('keydown', handleKeyPress);
-               resetInactivityTimer(); // Inicia o timer ao permitir entrada do jogador
            }
 
            function disablePlayerInput() {
@@ -106,7 +136,6 @@
                const buttonNum = parseInt(button.id.replace('button', ''));
                if (!isNaN(buttonNum)) {
                    processPlayerInput(buttonNum);
-                   resetInactivityTimer(); // Reinicia o timer sempre que o jogador clica
                }
            }
 
@@ -115,26 +144,26 @@
                if (['1', '2', '3', '4'].includes(key)) {
                    const buttonNum = parseInt(key);
                    processPlayerInput(buttonNum);
-                   resetInactivityTimer(); // Reinicia o timer sempre que o jogador pressiona uma tecla
                }
            }
 
            function processPlayerInput(num) {
                playerSequence.push(num);
-               // Verifica se a sequência está correta antes de executar o som do botão
                if (!checkPlayerSequence()) {
                    playErrorAnimation();
-                   messageDisplay.textContent = 'Você errou! Tente novamente.';
+                   messageDisplay.textContent = 'Você errou! Reiniciando jogo...';
+                   setImage('img/erro.jpeg'); // Altera a imagem para erro
                    disablePlayerInput();
+                   setTimeout(() => startGame(), 3000);
                    return;
                }
 
-               // Só toca o som do botão se a sequência estiver correta
                playButton(num);
 
                if (playerSequence.length === sequence.length) {
                    score++;
                    updateScore();
+                   setImage('img/acerto.jpeg'); // Altera a imagem para acerto
                    disablePlayerInput();
                    setTimeout(() => nextRound(), 1000);
                }
@@ -148,21 +177,32 @@
                sounds.error.play();
                buttons.forEach(button => button.classList.add('highlight'));
                setTimeout(() => buttons.forEach(button => button.classList.remove('highlight')), 500);
+               updateHighScore();
            }
 
            function updateScore() {
-               scoreDisplay.textContent = `Pontuação: ${score}`;
+               scoreDisplay.textContent = `Pontuação Atual: ${score}`;
            }
 
-           document.getElementById('startButton').addEventListener('click', startGame);
+           function updateHighScore() {
+               if (score > highScore) {
+                   highScore = score;
+               }
+               highScoreDisplay.textContent = `Pontuação Máxima: ${highScore}`;
+           }
+
+           // Função para alterar a imagem dinamicamente
+           function setImage(imagePath) {
+               imageElement.src = imagePath;
+           }
        });
     </script>
 </head>
 <body>
     <div class="container_placar">
         <h1>Jogo da Memória</h1>
-        <button id="startButton" class="button">Iniciar Jogo</button>
-        <div id="score">Pontuação: 0</div>
+        <div id="score">Pontuação Atual: 0</div>
+        <div id="high-score">Pontuação Máxima: 0</div>
         <div id="message"></div>
     </div>
 
@@ -174,7 +214,7 @@
     </div>
 
     <div class="container0">
-        <img src="img/gatinhogif.gif" alt="Descrição da imagem">
+        <img src="img/gatinhogif.gif" alt="">
     </div>
 </body>
 </html>
