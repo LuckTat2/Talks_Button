@@ -62,24 +62,48 @@ body::before {
     border-radius: 10%;
 }
 
-.editar-icone img {
-    width: 5px;
-    height: 5px;
-}
-
 /* Ícones de edição (alterar.png) */
 .editar-icone {
     position: absolute;
-    top: -160px;
-    left: -90px;
+    top: -70px;
+    left: -70px;
+    width: 220px !important;
+    height: 220px !important;
     border: none;
     background: none;
     cursor: pointer;
     visibility: hidden; /* Ícone invisível por padrão */
+    object-fit: contain; /* Garante que a imagem mantenha proporção */
 }
 
 /* Mostrar os ícones de edição apenas no modo de edição */
 .modo-edicao .editar-icone {
+    visibility: visible;
+}
+
+/* Configuração para garantir que o ícone responda ao tamanho */
+.editar-icone img {
+    width: 100%; /* Ocupar 100% da largura do elemento pai */
+    height: 100%; /* Ocupar 100% da altura do elemento pai */
+    object-fit: contain; /* Mantém a proporção da imagem */
+}
+
+/* Ícones de edição para os containers da direita */
+.editar-icone2 {
+    position: absolute;
+    top: -70px;
+    right: -70px;
+    width: 220px !important;
+    height: 220px !important;
+    border: none;
+    background: none;
+    cursor: pointer;
+    visibility: hidden; /* Ícone invisível por padrão */
+    object-fit: contain; /* Mantém a proporção da imagem */
+}
+
+/* Mostrar os ícones de edição apenas no modo de edição */
+.modo-edicao .editar-icone2 {
     visibility: visible;
 }
 
