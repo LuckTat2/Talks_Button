@@ -66,8 +66,8 @@ body::before {
     position: absolute;
     top: -140px;  /* Jogando mais para cima (aumentei o valor negativo) */
     left: -80px; /* Movendo bastante para a esquerda */
-    width: 20px; /* Tamanho do ícone para 20px */
-    height: 20px; /* Manter proporção com o width */
+    width: 5px; /* Tamanho do ícone para 20px */
+    height: 5px; /* Manter proporção com o width */
     border: none;
     background: none;
     cursor: pointer;
@@ -91,8 +91,8 @@ body::before {
 }
 
 .config-button img {
-    width: 70px; /* Aumentado o tamanho do ícone de configurações */
-    height: 70px;
+    width: 60px; /* Aumentado o tamanho do ícone de configurações */
+    height: 60px;
 }
 
 /* Container central (Ícone de Gato) */
