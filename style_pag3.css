@@ -20,7 +20,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.5); /* Branco com mais opacidade */
+    background-color: rgba(255, 255, 255, 0.5);
     z-index: -1; /* Garante que a camada de fundo fique atrás do conteúdo */
 }
 
@@ -29,16 +29,16 @@ body::before {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px; /* Aumentado o espaçamento entre os containers */
-    max-width: 1200px; /* Largura máxima do contêiner */
-    margin-top: 100px; /* Distancia mais os containers do topo da tela */
-    margin-bottom: 100px; /* Distancia mais os containers do fundo */
+    max-width: 1200px;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 /* Estilo dos containers */
 .container1, .container2, .container3, .container4 {
-    width: 350px; /* Aumentada a largura dos containers */
-    height: 200px; /* Aumentada a altura dos containers */
-    padding: 40px; /* Ajuste do padding para aumentar o espaço interno */
+    width: 350px; 
+    height: 200px; 
+    padding: 40px; 
     border-radius: 15%;
     display: flex;
     justify-content: center;
@@ -52,22 +52,22 @@ body::before {
 .container3 { border: 3px solid #a19706; background-color: #f3ef0d; }
 .container4 { border: 3px solid #0d053a; background-color: #0f27b4; }
 
-/* Imagens dos ícones de música - sem borda e sem sombra */
+/* Imagens dos ícones de música*/
 .container1 img, .container2 img, .container3 img, .container4 img {
-    width: 65%; /* Diminuiu a largura das imagens dentro dos containers para 60% */
+    width: 65%;
     height: auto;
-    border: none; /* Removida a borda */
-    box-shadow: none; /* Removida a sombra */
+    border: none;
+    box-shadow: none;
     border-radius: 10%;
 }
 
 /* Ícones de edição (alterar.png) */
 .editar-icone {
     position: absolute;
-    top: -140px;  /* Jogando mais para cima (aumentei o valor negativo) */
-    left: -80px; /* Movendo bastante para a esquerda */
-    width: 5px; /* Tamanho do ícone para 20px */
-    height: 5px; /* Manter proporção com o width */
+    top: -140px;
+    left: -80px;
+    width: 5px;
+    height: 5px;
     border: none;
     background: none;
     cursor: pointer;
@@ -76,7 +76,7 @@ body::before {
 
 /* Mostrar os ícones de edição apenas no modo de edição */
 .modo-edicao .editar-icone {
-    visibility: visible; /* Tornar o ícone visível quando no modo de edição */
+    visibility: visible;
 }
 
 /* Configurações do botão de modo de edição */
@@ -91,28 +91,27 @@ body::before {
 }
 
 .config-button img {
-    width: 60px; /* Aumentado o tamanho do ícone de configurações */
+    width: 60px;
     height: 60px;
 }
 
 /* Container central (Ícone de Gato) */
 .container0 {
     position: absolute;
-    top: 50%; /* Mantém o ícone de gato no centro vertical */
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
     border-radius: 150px;
-    width: 250px; /* Mantém a largura do container central */
+    width: 250px;
     max-width: 80%;
     max-height: 300px;
     overflow-y: auto;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Distância extra entre o ícone de gato e os containers */
 .container0 img {
     width: 100%;
     object-fit: cover;
