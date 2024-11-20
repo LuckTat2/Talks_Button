@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página com Botões</title>
+    <title>Som dos animais</title>
     <link rel="stylesheet" href="styles_pag2.css">
     <script>
         // Temporizador para inatividade (10 segundos de inatividade)
@@ -28,32 +28,22 @@
             const som = document.getElementById(id);
             som.play();
         }
-
-        // Função para executar animação e redirecionar
-        function executeAnimation(containerClass, url) {
-            const container = document.querySelector(containerClass);
-            container.classList.add('highlight'); // Adiciona a classe de destaque
-
-            setTimeout(function() {
-                window.location.href = url; // Redireciona após 600ms
-            }, 600); // 600ms de espera para permitir a animação
-        }
     </script>
 </head>
 <body>
     <div class="container">
-        <!-- Cada container redireciona para a página correspondente -->
-        <div class="container1" onclick="executeAnimation('.container1', 'pagina2_1.html')">
-            <img src="img/fundo_animais.jpg" width="100" alt="Animais">
+        <!-- Cada container toca um som correspondente -->
+        <div class="container1" onclick="tocarSom('som1')">
+            <img src="img/vaca.jpg" width="100" alt="Vaca">
         </div>
-        <div class="container2" onclick="executeAnimation('.container2', 'pagina2_2.html')">
-            <img src="img/city_2.jpg" width="100" alt="Cidade">
+        <div class="container2" onclick="tocarSom('som2')">
+            <img src="img/cao.jpg" width="100" alt="Cachorro">
         </div>
-        <div class="container3" onclick="executeAnimation('.container3', 'pagina2_3.html')">
-            <img src="img/sons_instrumentos.jpg" width="100" alt="Sons dos instrumentos">
+        <div class="container3" onclick="tocarSom('som3')">
+            <img src="img/galo.jpg" width="100" alt="Galo">
         </div>
-        <div class="container4" onclick="executeAnimation('.container4', 'pagina2_4.html')">
-            <img src="img/sons_natureza.jpg" width="100" alt="Sons da natureza">
+        <div class="container4" onclick="tocarSom('som4')">
+            <img src="img/pato.jpg" width="100" alt="Pato">
         </div>
     </div>
 
@@ -68,3 +58,4 @@
     <audio id="som4" src="audio/som4.mp3"></audio>
 </body>
 </html>
+
