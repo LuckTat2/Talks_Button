@@ -5,6 +5,17 @@ function tocarSom(id) {
     if (modoEdicao) return;
 
     const som = document.getElementById(id);
+    const container = document.querySelector(`[onclick="tocarSom('${id}')"]`);
+
+    // Adiciona a classe de clique ao container
+    container.classList.add('clique-ativo');
+
+    // Remove a classe após a duração da animação
+    setTimeout(() => {
+        container.classList.remove('clique-ativo');
+    }, 400); // Duração da animação em milissegundos
+
+    // Lógica de reprodução do som
     if (somAtual === som && !som.paused) {
         som.pause();
         som.currentTime = 0;

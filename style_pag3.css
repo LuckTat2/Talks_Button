@@ -44,13 +44,14 @@ body::before {
     justify-content: center;
     align-items: center;
     position: relative;
-    overflow: hidden; /* Impede qualquer conteúdo extra fora do container */
+    overflow: visible; /* Permitir que o brilho ultrapasse os limites */
+    transition: all 0.2s ease-in-out; /* Transição suave */
 }
 
-.container1 { border: 3px solid #4f740c; background-color: #1dc518; }
-.container2 { border: 3px solid hsl(0, 95%, 32%); background-color: hsl(0, 100%, 49%); }
-.container3 { border: 3px solid #a19706; background-color: #f3ef0d; }
-.container4 { border: 3px solid #0d053a; background-color: #0f27b4; }
+.container1 { border: 3px solid #4f740c; background-color: #43e43d; }
+.container2 { border: 3px solid hsl(0, 95%, 32%); background-color: hsl(0, 98%, 64%); }
+.container3 { border: 3px solid #a19706; background-color: #f7f33a; }
+.container4 { border: 3px solid #1d1061; background-color: #384cc0; }
 
 /* Imagens dos ícones de música*/
 .container1 img, .container2 img, .container3 img, .container4 img {
@@ -61,13 +62,16 @@ body::before {
     border-radius: 10%;
 }
 
+.editar-icone img {
+    width: 5px;
+    height: 5px;
+}
+
 /* Ícones de edição (alterar.png) */
 .editar-icone {
     position: absolute;
-    top: -140px;
-    left: -80px;
-    width: 5px;
-    height: 5px;
+    top: -160px;
+    left: -90px;
     border: none;
     background: none;
     cursor: pointer;
@@ -116,4 +120,25 @@ body::before {
     width: 100%;
     object-fit: cover;
     border-radius: 150px;
+}
+
+/* Animação para o brilho e encolhimento */
+@keyframes clique {
+    0% {
+        transform: scale(1); /* Tamanho padrão */
+        box-shadow: 0 0 0 rgba(255, 255, 0, 0); /* Sem brilho inicial */
+    }
+    50% {
+        transform: scale(0.9); /* Encolher levemente */
+        box-shadow: 0 0 30px 15px rgba(255, 255, 0, 0.8); /* Brilho visível */
+    }
+    100% {
+        transform: scale(1); /* Voltar ao tamanho padrão */
+        box-shadow: 0 0 0 rgba(255, 255, 0, 0); /* Sem brilho final */
+    }
+}
+
+/* Classe para ativar a animação */
+.clique-ativo {
+    animation: clique 0.4s ease-out;
 }
