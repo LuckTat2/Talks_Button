@@ -1,9 +1,9 @@
-body{
-
-    background-image: url("img/sons.png"); /* Caminho para a imagem de fundo */
+body {
     background-size: cover; /* Ajusta a imagem para cobrir toda a área */
     background-repeat: no-repeat; /* Impede que a imagem se repita */
     background-position: center; /* Centraliza a imagem */
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
+    url("img/sons.png") center / cover no-repeat;
 }
 
 .container {
@@ -29,9 +29,10 @@ body{
 }
 
 .container1 img {
-    width: 60%; /* Ajusta a largura da imagem para ocupar 100% do container */
-    max-width: 500px; /* Largura máxima da imagem */
+    width: 70%; /* Preenche a largura do container */
     height: auto; /* Mantém a proporção da imagem */
+    aspect-ratio: 1 / 1; /* Proporção de 1:1 */
+    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
     border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
     border-radius: 10%; /* Bordas arredondadas */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
@@ -53,9 +54,10 @@ body{
 }
 
 .container2 img {
-    width: 60%; /* Ajusta a largura da imagem para ocupar 100% do container */
-    max-width: 500px; /* Largura máxima da imagem */
+    width: 70%; /* Preenche a largura do container */
     height: auto; /* Mantém a proporção da imagem */
+    aspect-ratio: 1 / 1; /* Proporção de 1:1 */
+    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
     border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
     border-radius: 10%; /* Bordas arredondadas */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
@@ -77,9 +79,10 @@ body{
 }
 
 .container3 img {
-    width: 60%; /* Ajusta a largura da imagem para ocupar 100% do container */
-    max-width: 500px; /* Largura máxima da imagem */
+    width: 70%; /* Preenche a largura do container */
     height: auto; /* Mantém a proporção da imagem */
+    aspect-ratio: 1 / 1; /* Proporção de 1:1 */
+    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
     border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
     border-radius: 10%; /* Bordas arredondadas */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
@@ -101,9 +104,10 @@ body{
 }
 
 .container4 img {
-    width: 60%; /* Ajusta a largura da imagem para ocupar 100% do container */
-    max-width: 500px; /* Largura máxima da imagem */
+    width: 70%; /* Preenche a largura do container */
     height: auto; /* Mantém a proporção da imagem */
+    aspect-ratio: 1 / 1; /* Proporção de 1:1 */
+    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
     border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
     border-radius: 10%; /* Bordas arredondadas */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
