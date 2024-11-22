@@ -39,3 +39,23 @@ function toggleModoEdicao() {
         document.body.classList.remove('modo-edicao');
     }
 }
+
+// Evento para capturar teclas
+document.addEventListener('keydown', (event) => {
+    if (modoEdicao) return; // Ignora se estiver no modo de edição
+
+    switch (event.key) {
+        case '1':
+            tocarSom('som1');
+            break;
+        case '2':
+            tocarSom('som2');
+            break;
+        case '3':
+            tocarSom('som3');
+            break;
+        case '4':
+            tocarSom('som4');
+            break;
+    }
+});

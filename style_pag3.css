@@ -102,6 +102,14 @@ body::before {
     object-fit: contain; /* Mantém a proporção da imagem */
 }
 
+.editar-icone:hover {
+    transform: scale(1.1); /* Amplia ligeiramente o botão ao passar o mouse */
+}
+
+.editar-icone2:hover {
+    transform: scale(1.1); /* Amplia ligeiramente o botão ao passar o mouse */
+}
+
 /* Mostrar os ícones de edição apenas no modo de edição */
 .modo-edicao .editar-icone2 {
     visibility: visible;
@@ -182,5 +190,9 @@ body::before {
 }
 
 .botaoVoltar:hover {
+    transform: scale(1.1); /* Amplia ligeiramente o botão ao passar o mouse */
+}
+
+.config-button:hover {
     transform: scale(1.1); /* Amplia ligeiramente o botão ao passar o mouse */
 }
