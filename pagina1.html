@@ -38,9 +38,11 @@
 
             falarTexto(texto); // Fala o texto associado
 
+            // Redireciona após 600ms e remove a classe 'highlight'
             setTimeout(function() {
+                container.classList.remove('highlight'); // Remove o destaque
                 if (url) {
-                    window.location.href = url; // Redireciona após 600ms
+                    window.location.href = url; // Redireciona se a URL for válida
                 }
             }, 600); // 600ms de espera para permitir a animação
         }
@@ -49,11 +51,11 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === '1') {
                 executeAnimation('.container1', 'jogo_da_memoria.html', 'Abrindo o jogo da memória.');
-            } else if (event.key === '2') {
+            } else if (event.key === '0') {
                 executeAnimation('.container2', '', 'Abrindo o jogo bate marmota.');
-            } else if (event.key === '3') {
+            } else if (event.key === 'x') {
                 executeAnimation('.container3', '', 'Abrindo o jogo de guitarra.');
-            } else if (event.key === '4') {
+            } else if (event.key === 'm') {
                 executeAnimation('.container4', '', 'Abrindo o jogo de pinball.');
             }
         });

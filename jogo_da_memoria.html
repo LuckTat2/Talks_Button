@@ -30,29 +30,25 @@
            const messageDisplay = document.getElementById('message');
            const imageElement = document.querySelector('.container0 img'); // Referência à imagem do gif
 
-           // Exibe mensagem inicial
            messageDisplay.textContent = 'Pressione qualquer botão para iniciar!';
 
-           // Configura o timer de inatividade ao carregar a página
            resetInactivityTimer();
 
            function initializeGame() {
                if (!isGameStarted) {
                    isGameStarted = true;
-                   resetInactivityTimer(); // Reinicia o timer ao iniciar o jogo
+                   resetInactivityTimer();
                    startGame();
                }
            }
 
-           // Adiciona eventos para interações iniciais
            buttons.forEach(button => button.addEventListener('click', initializeGame));
            document.addEventListener('keydown', event => {
-               if (['1', '2', '3', '4'].includes(event.key)) {
+               if (['1', '2', '3', '4', '0', 'x', 'm'].includes(event.key)) {
                    initializeGame();
                }
            });
 
-           // Configura e reseta o timer de inatividade
            function resetInactivityTimer() {
                clearTimeout(inactivityTimer);
                inactivityTimer = setTimeout(() => {
@@ -60,7 +56,6 @@
                }, INACTIVITY_TIME);
            }
 
-           // Reinicia o timer em qualquer interação do usuário
            document.addEventListener('mousemove', resetInactivityTimer);
            document.addEventListener('click', resetInactivityTimer);
            document.addEventListener('keydown', resetInactivityTimer);
@@ -91,7 +86,7 @@
                score = 0;
                updateScore();
                messageDisplay.textContent = 'Memorize a sequência!';
-               setImage('img/gatinhogif.gif'); // Define a imagem padrão ao iniciar
+               setImage('img/gatinhogif.gif');
                playStartAnimation(() => nextRound());
            }
 
@@ -109,7 +104,7 @@
                playerSequence = [];
                sequence.push(Math.floor(Math.random() * 4) + 1);
                messageDisplay.textContent = `Rodada ${sequence.length}`;
-               setImage('img/gatinhogif.gif'); // Restaura a imagem padrão
+               setImage('img/gatinhogif.gif');
                playSequence();
            }
 
@@ -141,8 +136,15 @@
 
            function handleKeyPress(event) {
                const key = event.key;
-               if (['1', '2', '3', '4'].includes(key)) {
-                   const buttonNum = parseInt(key);
+               let buttonNum;
+
+               // Mapear teclas adicionais
+               if (key === '1') buttonNum = 1;
+               else if (key === '2' || key === '0') buttonNum = 2; // "2" ou "0" acionam o botão 2
+               else if (key === '3' || key === 'x') buttonNum = 3; // "3" ou "x" acionam o botão 3
+               else if (key === '4' || key === 'm') buttonNum = 4; // "4" ou "m" acionam o botão 4
+
+               if (buttonNum) {
                    processPlayerInput(buttonNum);
                }
            }
@@ -152,7 +154,7 @@
                if (!checkPlayerSequence()) {
                    playErrorAnimation();
                    messageDisplay.textContent = 'Você errou! Reiniciando jogo...';
-                   setImage('img/erro.jpeg'); // Altera a imagem para erro
+                   setImage('img/erro.jpeg');
                    disablePlayerInput();
                    setTimeout(() => startGame(), 3000);
                    return;
@@ -163,7 +165,7 @@
                if (playerSequence.length === sequence.length) {
                    score++;
                    updateScore();
-                   setImage('img/acerto.jpeg'); // Altera a imagem para acerto
+                   setImage('img/acerto.jpeg');
                    disablePlayerInput();
                    setTimeout(() => nextRound(), 1000);
                }
@@ -191,7 +193,6 @@
                highScoreDisplay.textContent = `Pontuação Máxima: ${highScore}`;
            }
 
-           // Função para alterar a imagem dinamicamente
            function setImage(imagePath) {
                imageElement.src = imagePath;
            }
