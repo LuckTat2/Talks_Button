@@ -166,3 +166,21 @@ body::before {
 .clique-ativo {
     animation: clique 0.4s ease-out;
 }
+
+.voltar {
+    position: fixed; /* Fixa o botão na tela, independente de rolagem */
+    top: 20px;       /* Espaçamento do topo */
+    left: 20px;      /* Espaçamento da esquerda */
+    z-index: 1000;   /* Garante que o botão fique acima de outros elementos */
+}
+
+.botaoVoltar {
+    width: 50px;     /* Define o tamanho do ícone */
+    height: 50px;
+    cursor: pointer; /* Altera o cursor para indicar interatividade */
+    transition: transform 0.2s ease; /* Adiciona animação suave */
+}
+
+.botaoVoltar:hover {
+    transform: scale(1.1); /* Amplia ligeiramente o botão ao passar o mouse */
+}
