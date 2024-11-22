@@ -1,21 +1,22 @@
 let somAtual = null;
 let modoEdicao = false;
 
+// Função para tocar os sons
 function tocarSom(id) {
-    if (modoEdicao) return;
+    if (modoEdicao) return; // Ignora o evento se estiver no modo de edição
 
     const som = document.getElementById(id);
     const container = document.querySelector(`[onclick="tocarSom('${id}')"]`);
 
-    // Adiciona a classe de clique ao container
+    // Adiciona a animação ao container
     container.classList.add('clique-ativo');
 
-    // Remove a classe após a duração da animação
+    // Remove a animação após a duração
     setTimeout(() => {
         container.classList.remove('clique-ativo');
-    }, 400); // Duração da animação em milissegundos
+    }, 400); // Duração da animação
 
-    // Lógica de reprodução do som
+    // Reprodução do som
     if (somAtual === som && !som.paused) {
         som.pause();
         som.currentTime = 0;
@@ -30,9 +31,10 @@ function tocarSom(id) {
     }
 }
 
+// Função para alternar entre o modo de edição
 function toggleModoEdicao() {
     modoEdicao = !modoEdicao;
-    // Adiciona ou remove a classe 'modo-edicao' no body
+    // Adiciona ou remove o 'modo-edicao' no body
     if (modoEdicao) {
         document.body.classList.add('modo-edicao');
     } else {
@@ -40,9 +42,9 @@ function toggleModoEdicao() {
     }
 }
 
-// Evento para capturar teclas
+// Evento para as teclas
 document.addEventListener('keydown', (event) => {
-    if (modoEdicao) return; // Ignora se estiver no modo de edição
+    if (modoEdicao) return; // Ignora o evento se estiver no modo de edição
 
     switch (event.key) {
         case '1':
