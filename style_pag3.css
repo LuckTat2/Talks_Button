@@ -175,8 +175,8 @@ body::before {
 }
 
 .botaoVoltar {
-    width: 50px;     /* Define o tamanho do ícone */
-    height: 50px;
+    width: 60px;     /* Define o tamanho do ícone */
+    height: 60px;
     cursor: pointer; /* Altera o cursor para indicar interatividade */
     transition: transform 0.2s ease; /* Adiciona animação suave */
 }
