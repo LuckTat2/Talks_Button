@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 1</title>
+    <link rel="stylesheet" href="stylesp1.css">
+    <script>
+        // Temporizador para inatividade (10 segundos de inatividade)
+        let inatividadeTemporizador;
+
+        function reiniciarTemporizador() {
+            clearTimeout(inatividadeTemporizador);
+            inatividadeTemporizador = setTimeout(function() {
+                window.location.href = 'pagina1.html';
+            }, 5000); // 5 segundos
+        }
+
+        // Reiniciar o temporizador ao detectar interação
+        window.onload = reiniciarTemporizador;
+        document.onmousemove = reiniciarTemporizador;
+        document.onkeydown = reiniciarTemporizador;
+        document.onclick = reiniciarTemporizador;
+        document.onscroll = reiniciarTemporizador;
+
+        // Função para tocar sons ao clicar nos botões
+        function tocarSom(id) {
+            const som = document.getElementById(id);
+            som.play();
+        }
+
+        function executeAnimation(containerClass, url) {
+            const container = document.querySelector(containerClass);
+            container.classList.add('highlight'); // Adiciona a classe de destaque
+
+            setTimeout(function() {
+                window.location.href = url; // Redireciona após 600ms
+            }, 600); // 600ms de espera para permitir a animação
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === '1') {
+                executeAnimation('.container1', 'pagina1.html');
+            } else if (event.key === '2') {
+                executeAnimation('.container2', 'pagina2.html');
+            } else if (event.key === '3') {
+                executeAnimation('.container3', 'pagina3.html');
+            } else if (event.key === '4') {
+                executeAnimation('.container4', 'pagina4.html');
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="container1" onclick="executeAnimation('.container1', 'jogo_da_memoria.html')">
+            
+            <img src="img/jogo_memoria.jpg" width="100">
+            <a href="" class="button">Editar</a>
+        </div>
+
+        <div class="container2" onclick="executeAnimation('.container2', '')">
+            <img src="img/jogo_bate_marmota.webp" alt="Descrição da imagem" width="100">
+            <a href="" class="button">Editar</a>
+        </div>
+
+        <div class="container3" onclick="executeAnimation('.container3', '')">
+            <img src="img/jogo_guitar.jpg" alt="Descrição da imagem" width="100">
+            <a href="" class="button">Editar</a>
+        </div>
+
+        <div class="container4" onclick="executeAnimation('.container4', '')">
+            <img src="img/jogo_pinball.jpg" alt="Descrição da imagem" width="100">
+            <a href="" class="button">Editar</a>
+        </div>
+    </div>
+
+    <div class="container0">
+        <img src="img/gatinhogif.gif" alt="Descrição da imagem">
+    </div>
+
+
+   
+    <a href="pagina1.html" class="button">Confirmar</a>
+</body>
+</html>
