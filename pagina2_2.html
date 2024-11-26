@@ -6,7 +6,7 @@
     <title>Sons da cidade</title>
     <link rel="stylesheet" href="styles_pag2.css">
     <script>
-        // Temporizador para inatividade (10 segundos de inatividade)
+        // Temporizador para inatividade (5 segundos de inatividade)
         let inatividadeTemporizador;
 
         function reiniciarTemporizador() {
@@ -23,10 +23,21 @@
         document.onclick = reiniciarTemporizador;
         document.onscroll = reiniciarTemporizador;
 
+        // Variável para armazenar o som atual
+        let somAtual = null;
+
         // Função para tocar som ao clicar no container
         function tocarSom(id) {
+            // Pausar o som atual se estiver tocando
+            if (somAtual && !somAtual.paused) {
+                somAtual.pause();
+                somAtual.currentTime = 0; // Reinicia o som atual
+            }
+
+            // Tocar o novo som
             const som = document.getElementById(id);
             som.play();
+            somAtual = som; // Atualiza o som atual
         }
     </script>
 </head>
@@ -34,7 +45,7 @@
     <div class="container">
         <!-- Cada container toca um som correspondente -->
         <div class="container1" onclick="tocarSom('som1')">
-            <img src="img/ambulancia.jpg" width="100" alt="Ambulancia">
+            <img src="img/ambulancia.jpg" width="100" alt="Ambulância">
         </div>
         <div class="container2" onclick="tocarSom('som2')">
             <img src="img/carro.jpg" width="100" alt="Carro">
@@ -52,10 +63,11 @@
     </div>
 
     <!-- Áudios -->
-    <audio id="som1" src="audio/som1.mp3"></audio>
-    <audio id="som2" src="audio/som2.mp3"></audio>
-    <audio id="som3" src="audio/som3.mp3"></audio>
-    <audio id="som4" src="audio/som4.mp3"></audio>
+    <audio id="som1" src="sounds/ambulancia.mp3"></audio>
+    <audio id="som2" src="sounds/buzina_carro.mp3"></audio>
+    <audio id="som3" src="sounds/sino_igreja.mp3"></audio>
+    <audio id="som4" src="sounds/telefone.mp3"></audio>
 </body>
 </html>
+
 
