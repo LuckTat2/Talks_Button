@@ -38,6 +38,12 @@
             const som = document.getElementById(id);
             som.play();
             somAtual = som; // Atualiza o som atual
+
+            // Definir temporizador para parar o som após 4 segundos
+            somTemporizador = setTimeout(() => {
+                som.pause();
+                som.currentTime = 0; // Reinicia o som
+            }, 4000); // 4 segundos
         }
     </script>
 </head>
