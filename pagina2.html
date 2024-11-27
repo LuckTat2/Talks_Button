@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página 2</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Página com Botões</title>
+    <link rel="stylesheet" href="styles_pag2.css">
     <script>
-        // Temporizador para inatividade (10 segundos de inatividade como exemplo)
+        // Temporizador para inatividade (10 segundos de inatividade)
         let inatividadeTemporizador;
 
         function reiniciarTemporizador() {
@@ -16,38 +16,49 @@
             }, 5000); // 5 segundos
         }
 
-        // Eventos que reiniciam o temporizador de inatividade
+        // Reiniciar o temporizador ao detectar interação
         window.onload = reiniciarTemporizador;
         document.onmousemove = reiniciarTemporizador;
         document.onkeydown = reiniciarTemporizador;
         document.onclick = reiniciarTemporizador;
         document.onscroll = reiniciarTemporizador;
 
-        // Função para tocar sons ao clicar nos botões
+        // Função para tocar som ao clicar no container
         function tocarSom(id) {
             const som = document.getElementById(id);
             som.play();
         }
+
+        // Função para executar animação e redirecionar
+        function executeAnimation(containerClass, url) {
+            const container = document.querySelector(containerClass);
+            container.classList.add('highlight'); // Adiciona a classe de destaque
+
+            setTimeout(function() {
+                window.location.href = url; // Redireciona após 600ms
+            }, 600); // 600ms de espera para permitir a animação
+        }
     </script>
 </head>
 <body>
-    <h1>Bem-vindo à Página 2</h1>
-    <p>Este é o conteúdo da página 2.</p>
-
-    <!-- Botões para tocar som -->
-    <div class="buttons">
-        <button class="small-button" onclick="tocarSom('som1')">Som 1</button>
-        <button class="small-button" onclick="tocarSom('som2')">Som 2</button>
-        <button class="small-button" onclick="tocarSom('som3')">Som 3</button>
-        <button class="small-button" onclick="tocarSom('som4')">Som 4</button>
+    <div class="container">
+        <!-- Cada container redireciona para a página correspondente -->
+        <div class="container1" onclick="executeAnimation('.container1', 'pagina2_1.html')">
+            <img src="img/fundo_animais.jpg" width="100" alt="Animais">
+        </div>
+        <div class="container2" onclick="executeAnimation('.container2', 'pagina2_2.html')">
+            <img src="img/city_2.jpg" width="100" alt="Cidade">
+        </div>
+        <div class="container3" onclick="executeAnimation('.container3', 'pagina2_3.html')">
+            <img src="img/sons_instrumentos.jpg" width="100" alt="Sons dos instrumentos">
+        </div>
+        <div class="container4" onclick="executeAnimation('.container4', 'pagina2_4.html')">
+            <img src="img/sons_natureza.jpg" width="100" alt="Sons da natureza">
+        </div>
     </div>
 
-    <!-- Sons escondidos -->
-    <audio id="som1" src="som1.mp3"></audio>
-    <audio id="som2" src="som2.mp3"></audio>
-    <audio id="som3" src="som3.mp3"></audio>
-    <audio id="som4" src="som4.mp3"></audio>
-
-    <a href="index.html" class="button">Voltar para a página inicial</a>
+    <div class="container0">
+        <img src="img/gatinhogif.gif" alt="Gatinho animado">
+    </div>
 </body>
 </html>

@@ -1,0 +1,167 @@
+body {
+    background-size: cover; /* Ajusta a imagem para cobrir toda a área */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+    background-position: center; /* Centraliza a imagem */
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
+    url("img/sons.png") center / cover no-repeat;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas com larguras iguais */
+    gap: 10px; /* Espaço entre os itens */
+    max-width: 1000px; /* Largura máxima do contêiner */
+    margin: auto; /* Centraliza o contêiner */
+}
+
+.container1 {
+    width: 300px; /* Largura fixa do container */
+    height: 100px; /* Altura fixa do container */
+    text-align: center;
+    padding: 80px;
+    border: 3px solid #4f740c;
+    background-color: #1dc518;
+    border-radius: 15%;
+    display: flex; /* Usando Flexbox */
+    flex-direction: column; /* Alinha itens na coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+}
+
+.container1 img {
+    width: 70%; /* Preenche a largura do container */
+    height: auto; /* Mantém a proporção da imagem */
+    aspect-ratio: 1 / 1; /* Proporção de 1:1 */
+    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
+    border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
+    border-radius: 10%; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    margin-top: 20px; /* Espaçamento acima da imagem */
+}
+
+.container2 {
+    width: 300px; /* Largura fixa do container */
+    height: 100px; /* Altura fixa do container */
+    text-align: center;
+    padding: 80px;
+    border: 3px solid hsl(0, 95%, 32%);
+    background-color: hsl(0, 100%, 49%);
+    border-radius: 15%;
+    display: flex; /* Usando Flexbox */
+    flex-direction: column; /* Alinha itens na coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+}
+
+.container2 img {
+    width: 70%; /* Preenche a largura do container */
+    height: auto; /* Mantém a proporção da imagem */
+    aspect-ratio: 1 / 1; /* Proporção de 1:1 */
+    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
+    border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
+    border-radius: 10%; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    margin-top: 20px; /* Espaçamento acima da imagem */
+}
+
+.container3 {
+    width: 300px; /* Largura fixa do container */
+    height: 100px; /* Altura fixa do container */
+    text-align: center;
+    padding: 80px;
+    border: 3px solid #a19706;
+    background-color: #f3ef0d;
+    border-radius: 15%;
+    display: flex; /* Usando Flexbox */
+    flex-direction: column; /* Alinha itens na coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+}
+
+.container3 img {
+    width: 70%; /* Preenche a largura do container */
+    height: auto; /* Mantém a proporção da imagem */
+    aspect-ratio: 1 / 1; /* Proporção de 1:1 */
+    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
+    border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
+    border-radius: 10%; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    margin-top: 20px; /* Espaçamento acima da imagem */
+}
+
+.container4 {
+    width: 300px; /* Largura fixa do container */
+    height: 100px; /* Altura fixa do container */
+    text-align: center;
+    padding: 80px;
+    border: 3px solid #0d053a;
+    background-color: #0f27b4;
+    border-radius: 15%;
+    display: flex; /* Usando Flexbox */
+    flex-direction: column; /* Alinha itens na coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+}
+
+.container4 img {
+    width: 70%; /* Preenche a largura do container */
+    height: auto; /* Mantém a proporção da imagem */
+    aspect-ratio: 1 / 1; /* Proporção de 1:1 */
+    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
+    border: 5px solid #ffffff; /* Borda branca ao redor da imagem */
+    border-radius: 10%; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    margin-top: 20px; /* Espaçamento acima da imagem */
+}
+
+.container0 {
+    position: absolute;
+    top: 50%; /* Posição vertical no meio */
+    left: 50%; /* Posição horizontal no meio */
+    transform: translate(-50%, -50%); /* Centraliza completamente */
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo semitransparente */
+    padding: 10px;
+    border-radius: 150px;
+    overflow: hidden;
+    width: 200px; /* Largura menor do container */
+    max-width: 80%; /* Limita a largura máxima */
+    max-height: 300px; /* Limita a altura máxima */
+    overflow-y: auto; /* Rolagem vertical */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.container0 img {
+    width: 100%; /* Ajusta a imagem para preencher o container */
+    object-fit: cover; /* Garante que a imagem se ajuste ao container sem distorção */
+    border-radius: 150px; /* Mantém o arredondamento da imagem */
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 5px;
+}
+
+.highlight {
+    animation: highlight-animation 0.5s forwards; /* Duração e execução da animação */
+}
+
+@keyframes highlight-animation {
+    0% {
+        background-color: rgba(255, 255, 0, 0.5); /* Cor de fundo inicial (amarelo claro) */
+        transform: scale(1); /* Tamanho inicial */
+    }
+    50% {
+        background-color: rgba(255, 255, 0, 0.8); /* Cor de fundo intermediária */
+        transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+    }
+    100% {
+        background-color: #1dc518; /* Cor de fundo original */
+        transform: scale(1); /* Retorna ao tamanho original */
+    }
+}
