@@ -63,15 +63,15 @@
             executeAnimation('#button4', 'https://web.expressia.life/activities?tab=activity-store&fallback=true');
         });
 
-        // Adicionando atalhos de teclado (1, 2, 3, 4)
+        // Adicionando atalhos de teclado com base no mapeamento solicitado
         document.addEventListener('keydown', function(event) {
             if (event.key === '1') {
                 executeAnimation('#button1', 'https://web.expressia.life/aac');
-            } else if (event.key === '2') {
+            } else if (event.key === '2' || event.key === '0') {
                 executeAnimation('#button2', 'https://paintonline.com.br/paint.html');
-            } else if (event.key === '3') {
+            } else if (event.key === '3' || event.key === 'x') {
                 executeAnimation('#button3', 'https://www.jogosgratisparacriancas.com/colorir/index.php');
-            } else if (event.key === '4') {
+            } else if (event.key === '4' || event.key === 'm') {
                 executeAnimation('#button4', 'https://web.expressia.life/activities?tab=activity-store&fallback=true');
             }
         });

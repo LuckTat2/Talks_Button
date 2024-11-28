@@ -51,12 +51,15 @@ document.addEventListener('keydown', (event) => {
             tocarSom('som1');
             break;
         case '2':
+        case '0':
             tocarSom('som2');
             break;
         case '3':
+        case 'x':
             tocarSom('som3');
             break;
         case '4':
+        case 'm':
             tocarSom('som4');
             break;
     }
