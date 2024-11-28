@@ -6,12 +6,12 @@
     <title>Página com Botões</title>
     <link rel="stylesheet" href="styles_pag2.css">
     <script>
-        // Temporizador para inatividade (10 segundos de inatividade)
+        // Temporizador para inatividade (5 segundos)
         let inatividadeTemporizador;
 
         function reiniciarTemporizador() {
             clearTimeout(inatividadeTemporizador);
-            inatividadeTemporizador = setTimeout(function() {
+            inatividadeTemporizador = setTimeout(function () {
                 window.location.href = 'index.html';
             }, 5000); // 5 segundos
         }
@@ -23,36 +23,66 @@
         document.onclick = reiniciarTemporizador;
         document.onscroll = reiniciarTemporizador;
 
-        // Função para tocar som ao clicar no container
-        function tocarSom(id) {
-            const som = document.getElementById(id);
+        // Função para tocar som e executar animação
+        function tocarSomEAnimar(idSom, containerClass, url = null) {
+            const som = document.getElementById(idSom);
+            som.currentTime = 0; // Reinicia o som caso já esteja tocando
             som.play();
-        }
 
-        // Função para executar animação e redirecionar
-        function executeAnimation(containerClass, url) {
             const container = document.querySelector(containerClass);
             container.classList.add('highlight'); // Adiciona a classe de destaque
 
-            setTimeout(function() {
-                window.location.href = url; // Redireciona após 600ms
-            }, 600); // 600ms de espera para permitir a animação
+            if (url) {
+                setTimeout(() => {
+                    window.location.href = url; // Redireciona após 600ms
+                }, 600);
+            }
+
+            setTimeout(() => {
+                container.classList.remove('highlight'); // Remove a classe após a animação
+            }, 600); // 600ms de animação
+        }
+
+        // Evento de teclado para tocar som e executar animação
+        document.addEventListener('keydown', function (event) {
+            switch (event.key) {
+                case '1':
+                    tocarSomEAnimar('som1', '.container1', 'pagina2_1.html');
+                    break;
+                case '2':
+                case '0':
+                    tocarSomEAnimar('som2', '.container2', 'pagina2_2.html');
+                    break;
+                case '3':
+                case 'x':
+                    tocarSomEAnimar('som3', '.container3', 'pagina2_3.html');
+                    break;
+                case '4':
+                case 'm':
+                    tocarSomEAnimar('som4', '.container4', 'pagina2_4.html');
+                    break;
+            }
+        });
+
+        // Função para clique nos contêineres
+        function clicarContainer(containerClass, idSom, url) {
+            tocarSomEAnimar(idSom, containerClass, url);
         }
     </script>
 </head>
 <body>
     <div class="container">
         <!-- Cada container redireciona para a página correspondente -->
-        <div class="container1" onclick="executeAnimation('.container1', 'pagina2_1.html')">
+        <div class="container1" onclick="clicarContainer('.container1', 'som1', 'pagina2_1.html')">
             <img src="img/fundo_animais.jpg" width="100" alt="Animais">
         </div>
-        <div class="container2" onclick="executeAnimation('.container2', 'pagina2_2.html')">
+        <div class="container2" onclick="clicarContainer('.container2', 'som2', 'pagina2_2.html')">
             <img src="img/city_2.jpg" width="100" alt="Cidade">
         </div>
-        <div class="container3" onclick="executeAnimation('.container3', 'pagina2_3.html')">
+        <div class="container3" onclick="clicarContainer('.container3', 'som3', 'pagina2_3.html')">
             <img src="img/sons_instrumentos.jpg" width="100" alt="Sons dos instrumentos">
         </div>
-        <div class="container4" onclick="executeAnimation('.container4', 'pagina2_4.html')">
+        <div class="container4" onclick="clicarContainer('.container4', 'som4', 'pagina2_4.html')">
             <img src="img/sons_natureza.jpg" width="100" alt="Sons da natureza">
         </div>
     </div>
@@ -60,5 +90,11 @@
     <div class="container0">
         <img src="img/gatinhogif.gif" alt="Gatinho animado">
     </div>
+
+    <!-- Áudios para cada contêiner -->
+    <audio id="som1" src="sounds/som1.mp3"></audio>
+    <audio id="som2" src="sounds/som2.mp3"></audio>
+    <audio id="som3" src="sounds/som3.mp3"></audio>
+    <audio id="som4" src="sounds/som4.mp3"></audio>
 </body>
 </html>

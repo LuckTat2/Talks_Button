@@ -120,23 +120,21 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10; 
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 10px; 
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
     border-radius: 150px;
-    overflow: hidden; 
-    width: 300px; /* Largura fixa */
-    max-width: 80%; /* Largura máxima */
-    max-height: 400px; /* Limite de altura */
-    overflow-y: auto; /* Rolagem vertical */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+    width: 250px;
+    max-width: 80%;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
-
 
 .container0 img {
     width: 100%;
-    object-fit: cover; /* Garante que a imagem preencha o contêiner sem distorção */
-    border-radius: 150px; /* Mantém o arredondamento da imagem */
+    object-fit: cover;
+    border-radius: 150px;
 }
 
 .button {

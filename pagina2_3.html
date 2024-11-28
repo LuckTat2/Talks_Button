@@ -12,7 +12,7 @@
         function reiniciarTemporizador() {
             clearTimeout(inatividadeTemporizador);
             inatividadeTemporizador = setTimeout(function() {
-                window.location.href = 'index.html';
+                window.location.href = 'pagina2.html';
             }, 5000); // 5 segundos
         }
 
@@ -26,7 +26,6 @@
         // Variável para armazenar o som atual
         let somAtual = null;
 
-        // Função para tocar som ao clicar no container
         function tocarSom(id) {
             // Pausar o som atual se estiver tocando
             if (somAtual && !somAtual.paused) {
@@ -39,12 +38,40 @@
             som.play();
             somAtual = som; // Atualiza o som atual
 
-            // Definir temporizador para parar o som após 4 segundos
-            somTemporizador = setTimeout(() => {
+            // Adiciona animação ao botão correspondente
+            const container = document.querySelector(`.container${id.slice(-1)}`);
+            container.classList.add('highlight');
+            setTimeout(() => container.classList.remove('highlight'), 400);
+
+            // Define um temporizador para parar o som após 4 segundos
+            setTimeout(() => {
                 som.pause();
                 som.currentTime = 0; // Reinicia o som
             }, 4000); // 4 segundos
         }
+
+        // Adiciona funcionalidade para teclas
+        document.addEventListener('keydown', function (event) {
+            switch (event.key) {
+                case '1':
+                    tocarSom('som1');
+                    break;
+                case '2':
+                case '0':
+                    tocarSom('som2');
+                    break;
+                case '3':
+                case 'x':
+                    tocarSom('som3');
+                    break;
+                case '4':
+                case 'm':
+                    tocarSom('som4');
+                    break;
+                default:
+                    break;
+            }
+        });
     </script>
 </head>
 <body>
@@ -75,4 +102,3 @@
     <audio id="som4" src="sounds/bateria.mp3"></audio>
 </body>
 </html>
-
