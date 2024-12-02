@@ -137,6 +137,29 @@ body{
     border-radius: 150px;
 }
 
+.container_logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-397%, -300%);
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 30px;
+    width: 150px;
+    max-width: 80%;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.container_logo img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
 .button {
     display: inline-block;
     padding: 10px 20px;
@@ -171,7 +194,7 @@ body{
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 colunas para 4 vídeos */
     gap: 20px;
-    max-width: 500px;
+    max-width: 400px;
     margin: 0 auto;
     padding: 10px;
 }
@@ -221,8 +244,10 @@ body{
 
 /* Estilo para o botão de voltar */
 .button {
+    position: absolute; /* Permite posicionar o botão livremente */
+    top: 20px; /* Ajuste a posição vertical */
+    left: 20px; /* Ajuste a posição horizontal */
     display: inline-block;
-    margin-top: 20px;
     font-size: 16px;
     padding: 8px 15px;
     color: #FFFFFF;
@@ -232,6 +257,7 @@ body{
     cursor: pointer;
     transition: background-color 0.3s;
     text-decoration: none;
+    z-index: 1000; /* Garante que o botão fique acima de outros elementos */
 }
 
 .button:hover {
